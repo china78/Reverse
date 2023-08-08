@@ -39,4 +39,4 @@ COPY --from=builder /app/.next/server ./.next/server
 
 EXPOSE 3000
 
-CMD node server.js
+CMD node server.js;

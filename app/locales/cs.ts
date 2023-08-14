@@ -5,7 +5,8 @@ const cs: PartialLocaleType = {
   WIP: "V přípravě...",
   Error: {
     Unauthorized:
-      "Neoprávněný přístup, zadejte přístupový kód na [stránce](/#/auth) nastavení.",
+      // "Neoprávněný přístup, zadejte přístupový kód na [stránce](/#/auth) nastavení.",
+      "Ještě jste se nepřihlásili. Přejděte na stránku s [přihlášením](/#/login) a přihlaste se.",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} zpráv`,

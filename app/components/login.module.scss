@@ -1,0 +1,40 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+
+  .login-logo {
+    transform: scale(1.4);
+  }
+
+  .login-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 2;
+  }
+
+  .login-tips {
+    font-size: 14px;
+  }
+
+  .username-input {
+    margin: 3vh 0;
+  }
+
+  .password-input {
+    margin: 0 0 3vh 0;
+  }
+
+  .login-actions {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    button:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -6,12 +6,30 @@ const en: LocaleType = {
   WIP: "Coming Soon...",
   Error: {
     Unauthorized:
-      "Unauthorized access, please enter access code in [auth](/#/auth) page.",
+      // "Unauthorized access, please enter access code in [auth](/#/auth) page.",
+      "You haven't logged in yet. Please go to the [login](/#/login) page and log in.",
   },
   Auth: {
     Title: "Need Access Code",
     Tips: "Please enter access code below",
     Input: "access code",
+    Confirm: "Confirm",
+    Later: "Later",
+  },
+  Login: {
+    Title: "Login",
+    Tips: "Please enter your username and password to login",
+    Username: "Please enter your username",
+    Password: "Please enter your password",
+    Confirm: "Confirm",
+    Later: "Later",
+  },
+  Register: {
+    Title: "Register",
+    Tips: "Please register an account",
+    Username: "Please enter your username",
+    Password: "Please enter your password",
+    Password2: "Please enter your password again",
     Confirm: "Confirm",
     Later: "Later",
   },

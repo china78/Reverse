@@ -5,7 +5,8 @@ const jp: PartialLocaleType = {
   WIP: "この機能は開発中です",
   Error: {
     Unauthorized:
-      "現在は未承認状態です。左下の設定ボタンをクリックし、アクセスパスワードかOpenAIのAPIキーを入力してください。",
+      // "現在は未承認状態です。左下の設定ボタンをクリックし、アクセスパスワードかOpenAIのAPIキーを入力してください。",
+      "まだログインしていません。[ログイン](/#/login)ページに移動してログインしてください。",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 通のチャット`,

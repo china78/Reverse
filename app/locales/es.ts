@@ -5,7 +5,8 @@ const es: PartialLocaleType = {
   WIP: "En construcción...",
   Error: {
     Unauthorized:
-      "Acceso no autorizado, por favor ingrese el código de acceso en la [página](/#/auth) de configuración.",
+      // "Acceso no autorizado, por favor ingrese el código de acceso en la [página](/#/auth) de configuración.",
+      "Aún no has iniciado sesión. Por favor, ve a la página de [inicio de sesión](/#/login) e inicia sesión.",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} mensajes`,

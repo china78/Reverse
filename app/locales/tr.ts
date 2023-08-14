@@ -5,7 +5,8 @@ const tr: PartialLocaleType = {
   WIP: "Çalışma devam ediyor...",
   Error: {
     Unauthorized:
-      "Yetkisiz erişim, lütfen erişim kodunu ayarlar [sayfasından](/#/auth) giriniz.",
+      // "Yetkisiz erişim, lütfen erişim kodunu ayarlar [sayfasından](/#/auth) giriniz.",
+      "Henüz giriş yapmadınız. Lütfen [giriş](/#/login) sayfasına gidip giriş yapın.",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} mesaj`,

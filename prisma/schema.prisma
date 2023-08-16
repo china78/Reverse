@@ -10,11 +10,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id    Int     @id @default(autoincrement())
-  username String  @unique
-  password  String
+  id             Int           @id @default(autoincrement())
+  username       String        @unique
+  password       String
+  // email          String        
+  // phoneNumber    String?       
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  usages         Int           @default(0)
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  subscriptionId Int?
 }
 
-
+model Subscription {
+  id          Int      @id @default(autoincrement())
+  type        String   // 套餐类型：月卡、季卡、年卡、终身
+  price       Float    // 套餐价格
+  users       User[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

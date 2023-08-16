@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./login.module.scss";
+import styles from "./sign-in.module.scss";
 import { IconButton } from "./button";
 
 import { useNavigate } from "react-router-dom";
@@ -10,20 +10,15 @@ import { getHeaders } from "../client/api";
 
 import BotIcon from "../icons/bot.svg";
 
-export function Login() {
+export function SignIn() {
   const navigate = useNavigate();
-  // const login = useLoginStore();
-
-  // const goLogin = () => {
-  //   return login.fetch();
-  // };
   const goHome = () => navigate(Path.Home);
-  // const goRegister = () => navigate(Path.Register);
+  const goSinUp = () => navigate(Path.SignUp);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const signUp = async () => {
+  const signInFn = async () => {
     const body = { username, password };
     const res = await fetch(`/api/sign-up`, {
       method: "POST",
@@ -36,25 +31,25 @@ export function Login() {
     });
     console.log(await res.json());
     if (res.ok) {
-      alert("注册成功");
+      alert("登陆成功");
     } else {
-      alert("注册失败");
+      alert("登陆失败");
     }
   };
 
   return (
-    <div className={styles["login-page"]}>
-      <div className={`no-dark ${styles["login-logo"]}`}>
+    <div className={styles["sign-in-page"]}>
+      <div className={`no-dark ${styles["sign-in-logo"]}`}>
         <BotIcon />
       </div>
 
-      <div className={styles["login-title"]}>{Locale.Login.Title}</div>
-      <div className={styles["login-tips"]}>{Locale.Login.Tips}</div>
+      <div className={styles["sign-in-title"]}>{Locale.SignIn.Title}</div>
+      <div className={styles["sign-in-tips"]}>{Locale.SignIn.Tips}</div>
 
       <input
         className={styles["username-input"]}
         type="text"
-        placeholder={Locale.Login.Username}
+        placeholder={Locale.SignIn.Username}
         value={username}
         onChange={(e) => {
           setUsername(e.currentTarget.value);
@@ -63,21 +58,25 @@ export function Login() {
       <input
         className={styles["password-input"]}
         type="password"
-        placeholder={Locale.Login.Password}
+        placeholder={Locale.SignIn.Password}
         value={password}
         onChange={(e) => {
           setPassword(e.currentTarget.value);
         }}
       />
 
-      <div className={styles["login-actions"]}>
-        <IconButton text={Locale.Login.Confirm} type="primary" />
+      <div className={styles["sign-in-actions"]}>
         <IconButton
-          text={Locale.Register.Title}
+          text={Locale.SignIn.Confirm}
           type="primary"
-          onClick={signUp}
+          onClick={signInFn}
         />
-        <IconButton text={Locale.Login.Later} onClick={goHome} />
+        <IconButton
+          text={Locale.SignUp.Title}
+          type="primary"
+          onClick={goSinUp}
+        />
+        <IconButton text={Locale.SignIn.Later} onClick={goHome} />
       </div>
     </div>
   );

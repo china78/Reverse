@@ -1,5 +1,4 @@
 import webpack from "webpack";
-import crypto from 'crypto-browserify';
 
 const mode = process.env.BUILD_MODE ?? "standalone";
 console.log("[Next] build mode", mode);
@@ -9,10 +8,7 @@ console.log("[Next] build with chunk: ", !disableChunk);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack(config, { isServer }) {
-    if (!isServer) {
-      config.resolve.alias['crypto'] = 'crypto-browserify';
-    }
+  webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],

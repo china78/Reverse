@@ -5,7 +5,7 @@ const cn = {
   Error: {
     Unauthorized:
       // "访问密码不正确或为空，请前往[登录](/#/auth)页输入正确的访问密码，或者在[设置](/#/settings)页填入你自己的 OpenAI API Key。",
-      "您还没有登录，请前往[登录](/#/login)页面登录",
+      "您还没有登录，请前往[登录](/#/sign-in)页面登录",
   },
   Auth: {
     Title: "需要密码",
@@ -14,21 +14,23 @@ const cn = {
     Confirm: "确认",
     Later: "稍后再说",
   },
-  Login: {
+  SignIn: {
     Title: "登陆",
     Tips: "请输入账号密码登陆",
     Username: "请输入账号",
     Password: "请输入密码",
-    Confirm: "确认",
+    Confirm: "登陆",
     Later: "稍后再说",
   },
-  Register: {
+  SignUp: {
     Title: "注册",
     Tips: "请注册账号",
     Username: "请输入账号",
     Password: "请输入密码",
     Password2: "再次输入密码",
-    Confirm: "确认",
+    Email: "请输入邮箱",
+    PhoneNumber: "请输入手机号",
+    Confirm: "确认注册",
     Later: "稍后再说",
   },
   ChatItem: {

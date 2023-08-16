@@ -1,0 +1,48 @@
+.sign-up-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+
+  .sign-up-logo {
+    transform: scale(1.4);
+  }
+
+  .sign-up-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 2;
+  }
+
+  .sign-up-tips {
+    font-size: 14px;
+  }
+
+  .username-input {
+    margin: 3vh 0;
+  }
+
+  .password-input {
+    margin: 0 0 3vh 0;
+  }
+
+  .email-input {
+    margin: 0 0 3vh 0;
+  }
+
+  .phone-input {
+    margin: 0 0 3vh 0;
+  }
+
+  .sign-up-actions {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    button:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

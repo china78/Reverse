@@ -7,7 +7,7 @@ const en: LocaleType = {
   Error: {
     Unauthorized:
       // "Unauthorized access, please enter access code in [auth](/#/auth) page.",
-      "You haven't logged in yet. Please go to the [login](/#/login) page and log in.",
+      "You haven't logged in yet. Please go to the [login](/#/sign-in) page and log in.",
   },
   Auth: {
     Title: "Need Access Code",
@@ -16,21 +16,23 @@ const en: LocaleType = {
     Confirm: "Confirm",
     Later: "Later",
   },
-  Login: {
-    Title: "Login",
+  SignIn: {
+    Title: "SignIn",
     Tips: "Please enter your username and password to login",
     Username: "Please enter your username",
     Password: "Please enter your password",
-    Confirm: "Confirm",
+    Confirm: "SignIn",
     Later: "Later",
   },
-  Register: {
-    Title: "Register",
+  SignUp: {
+    Title: "SignUp",
     Tips: "Please register an account",
-    Username: "Please enter your username",
-    Password: "Please enter your password",
-    Password2: "Please enter your password again",
-    Confirm: "Confirm",
+    Username: "Please enter username",
+    Password: "Please enter password",
+    Password2: "enter password again",
+    Email: "Please enter email",
+    PhoneNumber: "Please enter phoneNumber",
+    Confirm: "SignUp",
     Later: "Later",
   },
   ChatItem: {

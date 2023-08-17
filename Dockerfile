@@ -21,7 +21,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV DATABASE_URL=""
+ARG DATABASE_URL=""
+ENV DATABASE_URL=$DATABASE_URL
 RUN npx prisma generate
 RUN yarn run init-dev-db
 

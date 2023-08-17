@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import prisma from "../../db/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 // POST /api/login
 // Required fields in body: username, password
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const { username, password } = await req.json();
   try {
     const user = await prisma.user.findUnique({

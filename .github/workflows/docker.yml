@@ -50,5 +50,5 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
         env:
-          DATABASE_URL: ${{ secrets.DB_CONFIG }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
             

@@ -132,6 +132,7 @@ export class ChatGPTApi implements LLMApi {
               } catch {}
 
               if (res.status === 401) {
+                console.log(111111111111111111111);
                 responseTexts.push(Locale.Error.Unauthorized);
               }
 
@@ -211,6 +212,7 @@ export class ChatGPTApi implements LLMApi {
     ]);
 
     if (used.status === 401) {
+      console.log(22222222222222222222);
       throw new Error(Locale.Error.Unauthorized);
     }
 

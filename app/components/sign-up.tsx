@@ -4,32 +4,25 @@ import { IconButton } from "./button";
 
 import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
-// import { useLoginStore } from "../store";
 import Locale from "../locales";
 import { getHeaders } from "../client/api";
+import { message } from "antd";
 
 import BotIcon from "../icons/bot.svg";
 
 export function SignUp() {
   const navigate = useNavigate();
-  // const login = useLoginStore();
-
-  // const goLogin = () => {
-  //   return login.fetch();
-  // };
   const goHome = () => navigate(Path.Home);
-  // const goRegister = () => navigate(Path.Register);
+  const goSinIn = () => navigate(Path.SignIn);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
 
   const signUpFn = async () => {
     const body = { username, password };
     if (password !== password2) {
-      alert("两次输入的密码不一致");
+      message.error("两次输入的密码不一致");
       return;
     }
     const res = await fetch(`/api/sign-up`, {
@@ -43,9 +36,11 @@ export function SignUp() {
     });
     console.log(await res.json());
     if (res.ok) {
-      alert("注册成功");
+      message.success(Locale.SignUp.success);
+      // 跳进去
+      goSinIn();
     } else {
-      alert("注册失败");
+      message.error(Locale.SignUp.fail);
     }
   };
 
@@ -85,24 +80,6 @@ export function SignUp() {
           setPassword2(e.currentTarget.value);
         }}
       />
-      {/* <input
-        className={styles["email-input"]}
-        type="text"
-        placeholder={Locale.SignUp.Email}
-        value={username}
-        onChange={(e) => {
-          setEmail(e.currentTarget.value);
-        }}
-      />
-      <input
-        className={styles["phone-input"]}
-        type="password"
-        placeholder={Locale.SignUp.PhoneNumber}
-        value={password}
-        onChange={(e) => {
-          setPhoneNumber(e.currentTarget.value.toString());
-        }}
-      /> */}
 
       <div className={styles["sign-up-actions"]}>
         <IconButton

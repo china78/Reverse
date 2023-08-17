@@ -594,7 +594,15 @@ export function EditMessageModal(props: { onClose: () => void }) {
     </div>
   );
 }
-
+interface User {
+  createdAt: string;
+  id: number;
+  password: string;
+  subscriptionId: number;
+  updatedAt: string;
+  usages: number;
+  username: string;
+}
 export function Chat() {
   type RenderMessage = ChatMessage & { preview?: boolean };
 
@@ -869,7 +877,7 @@ export function Chat() {
     ? []
     : session.mask.context.slice();
 
-  const accessStore = useAccessStore();
+  const accessStore = useAccessStore.getState();
 
   if (
     context.length === 0 &&

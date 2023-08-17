@@ -23,6 +23,8 @@ const en: LocaleType = {
     Password: "Please enter your password",
     Confirm: "SignIn",
     Later: "Later",
+    success: "signIn Success",
+    fail: "signIn Fail",
   },
   SignUp: {
     Title: "SignUp",
@@ -34,6 +36,8 @@ const en: LocaleType = {
     PhoneNumber: "Please enter phoneNumber",
     Confirm: "SignUp",
     Later: "Later",
+    success: "Signup Success",
+    fail: "Signup Fail",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messages`,

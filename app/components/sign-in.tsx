@@ -4,23 +4,25 @@ import { IconButton } from "./button";
 
 import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
-// import { useLoginStore } from "../store";
 import Locale from "../locales";
 import { getHeaders } from "../client/api";
 
 import BotIcon from "../icons/bot.svg";
+import { useAccessStore } from "../store";
+import { message } from "antd";
 
 export function SignIn() {
   const navigate = useNavigate();
   const goHome = () => navigate(Path.Home);
   const goSinUp = () => navigate(Path.SignUp);
+  const accessStore = useAccessStore();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const signInFn = async () => {
     const body = { username, password };
-    const res = await fetch(`/api/sign-up`, {
+    const res = await fetch(`/api/sign-in`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -29,11 +31,17 @@ export function SignIn() {
       },
       body: JSON.stringify(body),
     });
-    console.log(await res.json());
+    const data = await res.json(); // 解析响应内容为 JSON 对象
+    console.log(data);
     if (res.ok) {
-      alert("登陆成功");
+      const token = data.token; // 提取令牌属性
+      // 将返回的令牌保存在本地存储中
+      localStorage.setItem("token", token);
+      accessStore.updateCode(data.envCode);
+      message.success(Locale.SignIn.success);
+      goHome();
     } else {
-      alert("登陆失败");
+      message.error(Locale.SignIn.fail);
     }
   };
 

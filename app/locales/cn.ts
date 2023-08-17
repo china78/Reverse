@@ -21,6 +21,8 @@ const cn = {
     Password: "请输入密码",
     Confirm: "登陆",
     Later: "稍后再说",
+    success: "登陆成功",
+    fail: "登陆失败",
   },
   SignUp: {
     Title: "注册",
@@ -32,6 +34,8 @@ const cn = {
     PhoneNumber: "请输入手机号",
     Confirm: "确认注册",
     Later: "稍后再说",
+    success: "注册成功",
+    fail: "注册失败",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,

@@ -24,7 +24,6 @@ COPY . .
 ARG DATABASE_URL=""
 ENV DATABASE_URL=$DATABASE_URL
 RUN npx prisma generate
-RUN yarn run init-dev-db
 
 RUN yarn build
 
@@ -44,4 +43,4 @@ COPY --from=builder /app/.next/server ./.next/server
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["sh", "-c", "yarn run init-dev-db && node server.js"]

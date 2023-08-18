@@ -1,6 +1,7 @@
 name: Run Docker Compose
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main

@@ -7,7 +7,7 @@ services:
     ports:
       - 80:3000
     environment:
-      - DATABASE_URL=mysql://${{ secrets.DB_USERNAME }}:${{ secrets.DB_PASSWORD }}@mysql:3306/${{ secrets.DB_NAME }}
+      - DATABASE_URL=mysql://${ secrets.DB_USERNAME }:${ secrets.DB_PASSWORD }@mysql:3306/${ secrets.DB_NAME }
     volumes:
       - ./path/to/nextjs/files:/app
       - ./path/to/prisma/files:/app/prisma
@@ -17,9 +17,9 @@ services:
   mysql:
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
-      - MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}
-      - MYSQL_USER=${{ secrets.MYSQL_USER }}
-      - MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+      - MYSQL_ROOT_PASSWORD=${ secrets.MYSQL_ROOT_PASSWORD }
+      - MYSQL_DATABASE=${ secrets.MYSQL_DATABASE }
+      - MYSQL_USER=${ secrets.MYSQL_USER }
+      - MYSQL_PASSWORD=${ secrets.MYSQL_PASSWORD }
     volumes:
       - ./path/to/mysql/data:/var/lib/mysql

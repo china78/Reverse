@@ -20,13 +20,13 @@ jobs:
 
       - name: Build and run Docker Compose
         env:
-          DB_USERNAME: ${ secrets.DB_USERNAME }
-          DB_PASSWORD: ${ secrets.DB_PASSWORD }
-          DB_NAME: ${ secrets.DB_NAME }
-          MYSQL_ROOT_PASSWORD: ${ secrets.MYSQL_ROOT_PASSWORD }
-          MYSQL_DATABASE: ${ secrets.MYSQL_DATABASE }
-          MYSQL_USER: ${ secrets.MYSQL_USER }}
-          MYSQL_PASSWORD: ${ secrets.MYSQL_PASSWORD }
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_USER: ${{ secrets.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
         run: |
           docker-compose build
           docker-compose up -d

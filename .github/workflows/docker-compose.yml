@@ -1,11 +1,9 @@
 name: Run Docker Compose
-
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-
 jobs:
   build-and-run:
     runs-on: ubuntu-latest

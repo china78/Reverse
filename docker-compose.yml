@@ -1,30 +1,25 @@
-version: '3.9'
+version: '3'
 services:
-  chatgpt-next-web: 
-    profiles: ["no-proxy"]
-    container_name: chatgpt-next-web
-    image: 
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - 80:3000
     environment:
-      - OPENAI_API_KEY=$OPENAI_API_KEY
-      - CODE=$CODE
-      - BASE_URL=$BASE_URL
-      - OPENAI_ORG_ID=$OPENAI_ORG_ID
-      - HIDE_USER_API_KEY=$HIDE_USER_API_KEY
-      - DISABLE_GPT4=$DISABLE_GPT4
+      - DATABASE_URL=mysql://${{ secrets.DB_USERNAME }}:${{ secrets.DB_PASSWORD }}@mysql:3306/${{ secrets.DB_NAME }}
+    volumes:
+      - ./path/to/nextjs/files:/app
+      - ./path/to/prisma/files:/app/prisma
+    depends_on:
+      - mysql
 
-  chatgpt-next-web-proxy: 
-    profiles: ["proxy"]
-    container_name: chatgpt-next-web-proxy
-    image: 
-    ports:
-      - 3000:3000
+  mysql:
+    image: mysql:latest
     environment:
-      - OPENAI_API_KEY=$OPENAI_API_KEY
-      - CODE=$CODE
-      - PROXY_URL=$PROXY_URL
-      - BASE_URL=$BASE_URL
-      - OPENAI_ORG_ID=$OPENAI_ORG_ID
-      - HIDE_USER_API_KEY=$HIDE_USER_API_KEY
-      - DISABLE_GPT4=$DISABLE_GPT4
+      - MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+      - MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}
+      - MYSQL_USER=${{ secrets.MYSQL_USER }}
+      - MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+    volumes:
+      - ./path/to/mysql/data:/var/lib/mysql

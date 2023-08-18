@@ -43,4 +43,4 @@ COPY --from=builder /app/.next/server ./.next/server
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "yarn run init-dev-db && node server.js"]
+CMD ["node", "server.js"]

@@ -15,7 +15,8 @@
     "prepare": "husky install",
     "proxy-dev": "sh ./scripts/init-proxy.sh && proxychains4 -f ./scripts/proxychains.conf yarn dev",
     "proxy-dev-direct": "proxychains4 -f ./scripts/proxychains.conf yarn dev",
-    "init-dev-db": "prisma migrate dev --name init"
+    "init-dev-db": "prisma migrate dev --name init",
+    "init-prod-db": "prisma migrate deploy"
   },
   "dependencies": {
     "@fortaine/fetch-event-source": "^3.0.6",

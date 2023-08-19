@@ -10,7 +10,7 @@ RUN apk update && apk add --no-cache git
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ENV DATABASE_URL=$DATABASE_URL
+ENV DATABASE_URL=""
 RUN npx prisma generate
 RUN yarn build
 
@@ -25,4 +25,4 @@ COPY --from=builder /app/.next/server ./.next/server
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["sh", "-c", "yarn run init-prod-db && node server.js"]

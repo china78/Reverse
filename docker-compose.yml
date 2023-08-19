@@ -1,25 +1,27 @@
 version: '3'
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: tggdocker/chat-github
     ports:
       - 80:3000
-    # environment:
-    #   - DATABASE_URL=mysql://${ DB_USERNAME }:${ DB_PASSWORD }@mysql:3306/${ DB_NAME }
+    environment:
+      - DATABASE_URL=mysql://root:12345678@localhost:3306/chat_app
+      - OPENAI_API_KEY=
+      - ENV CODE=
     volumes:
-      - ./path/to/nextjs/files:/app
-      - ./path/to/prisma/files:/app/prisma
+      - ./nextjs/files:/app
+      - ./prisma/files:/app/prisma
     depends_on:
       - mysql
 
   mysql:
     image: mysql:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=${ DB_PASSWORD }
-      - MYSQL_DATABASE=${ DB_NAME }
-      - MYSQL_USER=${ DB_USERNAME }
-      - MYSQL_PASSWORD=${ DB_PASSWORD }
+      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_DATABASE=chat_app
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=12345678
     volumes:
-      - ./path/to/mysql/data:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql
+    expose:
+      - 3306

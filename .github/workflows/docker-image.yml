@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up environment variables
-      env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      run: |
-        echo "DATABASE_URL=${DATABASE_URL}" >> .env
+    # - name: Set up environment variables
+    #   env:
+    #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    #   run: |
+    #     echo "DATABASE_URL=${DATABASE_URL}" >> .env
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag chat:$(date +%s)

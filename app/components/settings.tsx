@@ -612,7 +612,7 @@ export function Settings() {
           </ListItem>
         </List>
 
-        {/* <List>
+        <List>
           {showAccessCode ? (
             <ListItem
               title={Locale.Settings.AccessCode.Title}
@@ -629,11 +629,11 @@ export function Settings() {
             </ListItem>
           ) : (
             <></>
-          )} */}
+          )}
 
-        {/* {!accessStore.hideUserApiKey ? ( */}
-        <>
-          {/* <ListItem
+          {!accessStore.hideUserApiKey ? (
+            <>
+              <ListItem
                 title={Locale.Settings.Endpoint.Title}
                 subTitle={Locale.Settings.Endpoint.SubTitle}
               >
@@ -645,8 +645,8 @@ export function Settings() {
                     accessStore.updateOpenAiUrl(e.currentTarget.value)
                   }
                 ></input>
-              </ListItem> */}
-          {/* <ListItem
+              </ListItem>
+              <ListItem
                 title={Locale.Settings.Token.Title}
                 subTitle={Locale.Settings.Token.SubTitle}
               >
@@ -658,11 +658,11 @@ export function Settings() {
                     accessStore.updateToken(e.currentTarget.value);
                   }}
                 />
-              </ListItem> */}
-        </>
-        {/* ) : null} */}
+              </ListItem>
+            </>
+          ) : null}
 
-        {/* {!accessStore.hideBalanceQuery ? (
+          {!accessStore.hideBalanceQuery ? (
             <ListItem
               title={Locale.Settings.Usage.Title}
               subTitle={
@@ -686,9 +686,9 @@ export function Settings() {
                 />
               )}
             </ListItem>
-          ) : null} */}
+          ) : null}
 
-        {/* <ListItem
+          <ListItem
             title={Locale.Settings.CustomModel.Title}
             subTitle={Locale.Settings.CustomModel.SubTitle}
           >
@@ -703,7 +703,7 @@ export function Settings() {
               }
             ></input>
           </ListItem>
-        </List> */}
+        </List>
 
         <SyncItems />
 

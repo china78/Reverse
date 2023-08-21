@@ -18,6 +18,7 @@ export enum Path {
   Auth = "/auth",
   SignIn = "/sign-in",
   SignUp = "/sign-up",
+  Pay = "/pay",
 }
 
 export enum SlotID {

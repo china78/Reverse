@@ -8,7 +8,9 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN set -eux; \
+    sed -i 's/npmmirror.com/npmjs.org/g' yarn.lock; \
+    yarn install --verbose;
 
 FROM base AS builder
 

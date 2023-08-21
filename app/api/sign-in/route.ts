@@ -36,7 +36,13 @@ export async function POST(req: NextRequest) {
       "default-key",
     );
     return NextResponse.json(
-      { message: "Login successful", token, envCode: process.env.CODE },
+      {
+        message: "Login successful",
+        token,
+        envCode: process.env.CODE,
+        userId: user.id,
+        username: user.username,
+      },
       { status: 200 },
     );
   } catch (error) {

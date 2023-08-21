@@ -34,9 +34,12 @@ export function SignIn() {
     const data = await res.json(); // 解析响应内容为 JSON 对象
     console.log(data);
     if (res.ok) {
-      const token = data.token; // 提取令牌属性
+      const { userId, username, token } = data;
       // 将返回的令牌保存在本地存储中
-      localStorage.setItem("token", token);
+      localStorage.setItem(
+        "user-info",
+        JSON.stringify({ token, userId, username }),
+      );
       accessStore.updateCode(data.envCode);
       message.success(Locale.SignIn.success);
       goHome();

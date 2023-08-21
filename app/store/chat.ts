@@ -17,6 +17,7 @@ import { ChatControllerPool } from "../client/controller";
 import { prettyObject } from "../utils/format";
 import { estimateTokenLength } from "../utils/token";
 import { nanoid } from "nanoid";
+import { getHeaders } from "../client/api";
 
 export type ChatMessage = RequestMessage & {
   date: string;
@@ -94,6 +95,7 @@ interface ChatStore {
   onUserInput: (content: string) => Promise<void>;
   summarizeSession: () => void;
   updateStat: (message: ChatMessage) => void;
+  recordChats: () => void;
   updateCurrentSession: (updater: (session: ChatSession) => void) => void;
   updateMessage: (
     sessionIndex: number,
@@ -540,6 +542,8 @@ export const useChatStore = create<ChatStore>()(
           historyMsgLength,
           modelConfig.compressMessageLengthThreshold,
         );
+        // 记录当前用户的操作数
+        get().recordChats();
 
         if (
           historyMsgLength > modelConfig.compressMessageLengthThreshold &&
@@ -559,6 +563,7 @@ export const useChatStore = create<ChatStore>()(
             },
             onFinish(message) {
               console.log("[Memory] ", message);
+
               session.lastSummarizeIndex = lastSummarizeIndex;
             },
             onError(err) {
@@ -567,7 +572,27 @@ export const useChatStore = create<ChatStore>()(
           });
         }
       },
-
+      async recordChats() {
+        // 从localStorage中获取userId
+        let userInfo = localStorage.getItem("user-info");
+        // 检查userId是否存在
+        if (userInfo) {
+          // 执行您的逻辑，使用userId
+          const body = { userId: JSON.parse(userInfo).userId };
+          const res = await fetch(`/api/record-chats`, {
+            method: "POST",
+            mode: "cors",
+            headers: {
+              ...getHeaders(),
+            },
+            body: JSON.stringify(body),
+          });
+          const data = await res.json(); // 解析响应内容为 JSON 对象
+          console.log("用户的聊天次数:", data);
+        } else {
+          console.log("userId不存在");
+        }
+      },
       updateStat(message) {
         get().updateCurrentSession((session) => {
           session.stat.charCount += message.content.length;

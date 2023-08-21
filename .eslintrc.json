@@ -1,4 +1,12 @@
 {
   "extends": "next/core-web-vitals",
-  "plugins": ["prettier"]
+  "plugins": ["prettier"],
+  "settings": {
+    "next": {
+      "rootDir": "/app/"
+    }
+  },
+  "rules": {
+    "@next/next/no-html-link-for-pages": ["error", "/app/"]
+  }
 }

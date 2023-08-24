@@ -13,14 +13,11 @@ services:
       - ./prisma/files:/app/prisma
     depends_on:
       - mysql
-
   mysql:
     image: mysql:latest
     environment:
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=chat_app
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=12345678
     volumes:
       - ./mysql/data:/var/lib/mysql
     expose:

@@ -1,20 +1,20 @@
-version: '3'
+version: "3"
 services:
   app:
     image: tggdocker/chat-github
     ports:
       - 8081:3000
     environment:
-      - DATABASE_URL=mysql://root:12345678@localhost:3306/chat_app
+      - DATABASE_URL=mysql://root:12345678@db:3306/chat_app
       - OPENAI_API_KEY=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
       - CODE=goodboy
-    volumes:
-      - ./nextjs/files:/app
-      - ./prisma/files:/app/prisma
     depends_on:
-      - mysql
-  mysql:
+      - db
+    restart: on-failure
+  db:
     image: mysql:latest
+    restart: on-failure
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     environment:
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=chat_app

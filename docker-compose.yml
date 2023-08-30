@@ -20,5 +20,17 @@ services:
       - MYSQL_DATABASE=chat_app
     volumes:
       - ./mysql/data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     expose:
       - 3306
+  casdoor:
+    image: casbin/casdoor
+    ports:
+      - 8000:8000
+    environment:
+      RUNNING_IN_DOCKER: "true"
+    depends_on:
+      - db
+    restart: on-failure
+    volumes:
+      - ./conf:/conf/

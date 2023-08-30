@@ -1,0 +1,40 @@
+.sign-in-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+
+  .sign-in-logo {
+    transform: scale(1.4);
+  }
+
+  .sign-in-title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 2;
+  }
+
+  .sign-in-tips {
+    font-size: 14px;
+  }
+
+  .username-input {
+    margin: 3vh 0;
+  }
+
+  .password-input {
+    margin: 0 0 3vh 0;
+  }
+
+  .sign-in-actions {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    button:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}

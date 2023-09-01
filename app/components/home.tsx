@@ -29,6 +29,8 @@ import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
 import { useAccessStore } from "../store";
+import { AuthCallback } from "casdoor-react-sdk";
+import * as Setting from "../Setting";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -128,6 +130,26 @@ function Screen() {
   const isAuth = location.pathname === Path.Auth;
   const isMobileScreen = useMobileScreen();
 
+  const authCallback = (
+    <AuthCallback
+      sdk={Setting.CasdoorSDK}
+      serverUrl={Setting.ServerUrl}
+      saveTokenFromResponse={(res) => {
+        // @ts-ignore
+        // save token
+        console.log("-------------------token1111------------------", res);
+        localStorage.setItem("token", res.data.accessToken);
+      }}
+      isGetTokenSuccessful={(res) => {
+        console.log("-------------------token2222------------------", res);
+        // @ts-ignore
+        // according to the data returned by the server,
+        // determine whether the `token` is successfully obtained through `code` and `state`.
+        return res.success === true;
+      }}
+    />
+  );
+
   useEffect(() => {
     loadAsyncGoogleFont();
   }, []);
@@ -153,6 +175,7 @@ function Screen() {
 
           <div className={styles["window-content"]} id={SlotID.AppBody}>
             <Routes>
+              <Route path={Path.Chat} element={authCallback} />
               <Route path={Path.Pay} element={<Pay />} />
               <Route path={Path.SignUp} element={<SignUp />} />
               <Route path={Path.SignIn} element={<SignIn />} />

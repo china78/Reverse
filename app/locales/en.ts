@@ -5,9 +5,7 @@ import { LocaleType } from "./index";
 const en: LocaleType = {
   WIP: "Coming Soon...",
   Error: {
-    Unauthorized:
-      // "Unauthorized access, please enter access code in [auth](/#/auth) page.",
-      "You haven't logged in yet. Please go to the [login](/#/sign-in) page and log in.",
+    Unauthorized: `You haven't logged in yet. Please go to the [login](/#/sign-in) page and log in.`,
   },
   Auth: {
     Title: "Need Access Code",

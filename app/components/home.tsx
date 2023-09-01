@@ -134,7 +134,7 @@ function Screen() {
     <AuthCallback
       sdk={Setting.CasdoorSDK}
       serverUrl={Setting.ServerUrl}
-      saveTokenFromResponse={(res) => {
+      saveTokenFromResponse={(res: any) => {
         // @ts-ignore
         // save token
         console.log("-------------------token1111------------------", res);

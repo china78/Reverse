@@ -19,6 +19,7 @@ export enum Path {
   SignIn = "/sign-in",
   SignUp = "/sign-up",
   Pay = "/pay",
+  OAuth = "/oauth",
 }
 
 export enum SlotID {
@@ -139,3 +140,15 @@ export const PRINCES = [
   price: string;
   originPrice: string;
 }[];
+
+export const CASDOOR = {
+  endpoint: "http://localhost:8080",
+  clientId: "c6b3a0adcc44d5d10856",
+  appName: "gpt_test",
+  organizationName: "built-in",
+  redirectPath: "/#/oauth",
+  // NOTE: 不要把真实环境的 clientSecret 放在这里
+  // 正式环境的 clientSecret 应该放在环境变量中
+  clientSecret: "123456",
+  signinPath: "/api/signin",
+};

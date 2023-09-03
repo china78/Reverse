@@ -29,7 +29,7 @@
     "antd": "^5.8.4",
     "bcrypt": "^5.1.1",
     "casdoor-js-sdk": "^0.10.0",
-    "casdoor-react-sdk": "^1.2.0",
+    "casdoor-nodejs-sdk": "^1.4.0",
     "crypto-browserify": "^3.12.0",
     "emoji-picker-react": "^4.4.11",
     "eslint-plugin-next": "^0.0.0",

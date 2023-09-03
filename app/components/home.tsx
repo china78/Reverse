@@ -29,8 +29,6 @@ import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
 import { useAccessStore } from "../store";
-import { AuthCallback } from "casdoor-react-sdk";
-import * as Setting from "../Setting";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -66,6 +64,10 @@ const NewChat = dynamic(async () => (await import("./new-chat")).NewChat, {
 });
 
 const MaskPage = dynamic(async () => (await import("./mask")).MaskPage, {
+  loading: () => <Loading noLogo />,
+});
+
+const OAuthPage = dynamic(async () => (await import("./oAuth")).OAuthPage, {
   loading: () => <Loading noLogo />,
 });
 
@@ -130,26 +132,6 @@ function Screen() {
   const isAuth = location.pathname === Path.Auth;
   const isMobileScreen = useMobileScreen();
 
-  const authCallback = (
-    <AuthCallback
-      sdk={Setting.CasdoorSDK}
-      serverUrl={Setting.ServerUrl}
-      saveTokenFromResponse={(res: any) => {
-        // @ts-ignore
-        // save token
-        console.log("-------------------token1111------------------", res);
-        localStorage.setItem("token", res.data.accessToken);
-      }}
-      isGetTokenSuccessful={(res) => {
-        console.log("-------------------token2222------------------", res);
-        // @ts-ignore
-        // according to the data returned by the server,
-        // determine whether the `token` is successfully obtained through `code` and `state`.
-        return res.success === true;
-      }}
-    />
-  );
-
   useEffect(() => {
     loadAsyncGoogleFont();
   }, []);
@@ -175,7 +157,7 @@ function Screen() {
 
           <div className={styles["window-content"]} id={SlotID.AppBody}>
             <Routes>
-              <Route path={Path.Chat} element={authCallback} />
+              <Route path={Path.OAuth} element={<OAuthPage />} />
               <Route path={Path.Pay} element={<Pay />} />
               <Route path={Path.SignUp} element={<SignUp />} />
               <Route path={Path.SignIn} element={<SignIn />} />

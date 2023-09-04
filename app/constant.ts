@@ -142,13 +142,13 @@ export const PRINCES = [
 }[];
 
 export const CASDOOR = {
-  endpoint: "http://localhost:8080",
+  endpoint: "http://localhost:8000",
   clientId: "c6b3a0adcc44d5d10856",
   appName: "gpt_test",
   organizationName: "built-in",
   redirectPath: "/#/oauth",
   // NOTE: 不要把真实环境的 clientSecret 放在这里
   // 正式环境的 clientSecret 应该放在环境变量中
-  clientSecret: "123456",
+  clientSecret: "0d23837890ad2013425e07ce77534e001fe15e09",
   signinPath: "/api/signin",
 };

@@ -43,13 +43,13 @@ const Pay = dynamic(async () => (await import("./pay")).Pay, {
   loading: () => <Loading noLogo />,
 });
 
-const SignUp = dynamic(async () => (await import("./sign-up")).SignUp, {
-  loading: () => <Loading noLogo />,
-});
+// const SignUp = dynamic(async () => (await import("./sign-up")).SignUp, {
+//   loading: () => <Loading noLogo />,
+// });
 
-const SignIn = dynamic(async () => (await import("./sign-in")).SignIn, {
-  loading: () => <Loading noLogo />,
-});
+// const SignIn = dynamic(async () => (await import("./sign-in")).SignIn, {
+//   loading: () => <Loading noLogo />,
+// });
 
 const Settings = dynamic(async () => (await import("./settings")).Settings, {
   loading: () => <Loading noLogo />,
@@ -159,8 +159,6 @@ function Screen() {
             <Routes>
               <Route path={Path.OAuth} element={<OAuthPage />} />
               <Route path={Path.Pay} element={<Pay />} />
-              <Route path={Path.SignUp} element={<SignUp />} />
-              <Route path={Path.SignIn} element={<SignIn />} />
               <Route path={Path.Home} element={<Chat />} />
               <Route path={Path.NewChat} element={<NewChat />} />
               <Route path={Path.Masks} element={<MaskPage />} />

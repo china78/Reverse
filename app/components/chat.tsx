@@ -83,6 +83,7 @@ import { prettyObject } from "../utils/format";
 import { ExportMessageModal } from "./exporter";
 import { getClientConfig } from "../config/client";
 import { getHeaders } from "../client/api";
+import { isLoggedIn } from "../Setting";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -719,12 +720,21 @@ export function Chat() {
   }
 
   const doSubmit = async (userInput: string) => {
+    // 如果未登陆casdoor(没有jwt), 提示登陆 !isLoggedIn()
+    if (!isLoggedIn()) {
+      const copiedHello = Object.assign({}, BOT_HELLO);
+      copiedHello.content = Locale.Error.Unauthorized;
+      context.push(copiedHello);
+      // return
+    }
+
     // 先行检查使用次数
     const upperLimit = await checkUpperLimmit();
     if (upperLimit) {
       return navigate(Path.Pay);
     }
     if (userInput.trim() === "") return;
+
     const matchCommand = chatCommands.match(userInput);
     if (matchCommand.matched) {
       setUserInput("");
@@ -732,6 +742,7 @@ export function Chat() {
       matchCommand.invoke();
       return;
     }
+
     setIsLoading(true);
     chatStore.onUserInput(userInput).then(() => setIsLoading(false));
     localStorage.setItem(LAST_INPUT_KEY, userInput);
@@ -902,6 +913,12 @@ export function Chat() {
     ? []
     : session.mask.context.slice();
 
+  console.log(
+    "------- session.mask.hideContext ---- ",
+    session.mask.hideContext,
+  );
+  console.log("---- context ------", context);
+
   const accessStore = useAccessStore.getState();
 
   if (
@@ -909,7 +926,11 @@ export function Chat() {
     session.messages.at(0)?.content !== BOT_HELLO.content
   ) {
     const copiedHello = Object.assign({}, BOT_HELLO);
-    if (!accessStore.isAuthorized()) {
+    // 这里不再使用原有的验证方式，直接用缓存里的jwt来验证
+    // if (!accessStore.isAuthorized()) {
+    //   copiedHello.content = Locale.Error.Unauthorized;
+    // }
+    if (!isLoggedIn()) {
       copiedHello.content = Locale.Error.Unauthorized;
     }
     context.push(copiedHello);

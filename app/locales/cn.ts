@@ -5,7 +5,7 @@ const cn = {
   Error: {
     Unauthorized:
       // "访问密码不正确或为空，请前往[登录](/#/auth)页输入正确的访问密码，或者在[设置](/#/settings)页填入你自己的 OpenAI API Key。",
-      "您还没有登录，请前往[登录](/#/sign-in)页面登录",
+      "您还没有登录，请前往[登录](/#/oauth)页面登录",
   },
   Auth: {
     Title: "需要密码",

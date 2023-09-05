@@ -39,9 +39,7 @@ export function auth(req: NextRequest) {
   console.log("[User IP] ", getIP(req));
   console.log("[Time] ", new Date().toLocaleString());
 
-  // console.log('--------------------走到这里了-----------------------', )
   if (serverConfig.needCode && !serverConfig.codes.has(hashedCode) && !token) {
-    console.log("--------------------走到这里了-----------------------");
     return {
       error: true,
       msg: !accessCode ? "empty access code" : "wrong access code",

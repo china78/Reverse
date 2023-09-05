@@ -11,15 +11,6 @@ export function OAuthPage() {
 
   const searchParams = new URLSearchParams(location.search);
 
-  console.log(
-    '----------- searchParams.get("code") ---------- ',
-    searchParams.get("code"),
-  );
-  console.log(
-    '----------- searchParams.get("state") ---------- ',
-    searchParams.get("state"),
-  );
-
   Setting.signin({
     code: searchParams.get("code") ?? undefined,
     state: searchParams.get("state") ?? undefined,

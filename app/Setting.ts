@@ -37,6 +37,10 @@ export const setJwt = (jwt: string) => {
   localStorage.setItem("jwt", jwt);
 };
 
+export const setUserInfo = (userInfo: string) => {
+  localStorage.setItem("casdoor-user-info", userInfo);
+};
+
 export const getJwt = () => {
   return localStorage.getItem("jwt");
 };
@@ -45,8 +49,8 @@ export const goToLink = (link: string) => {
   window.location.href = link;
 };
 
-export const getUserinfo = () => {
-  return fetch(`${serverUrl}/api/userinfo`, {
+export const getUsersInfo = () => {
+  return fetch(`${serverUrl}/api/users-info`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,

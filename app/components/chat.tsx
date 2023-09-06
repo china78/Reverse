@@ -83,7 +83,8 @@ import { prettyObject } from "../utils/format";
 import { ExportMessageModal } from "./exporter";
 import { getClientConfig } from "../config/client";
 import { getHeaders } from "../client/api";
-import { isLoggedIn } from "../Setting";
+import { getJwt, isLoggedIn } from "../Setting";
+import { message } from "antd";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -719,15 +720,44 @@ export function Chat() {
     }
   }
 
+  async function parseJwt() {
+    try {
+      // 尝试去调用解析jwt方法
+      const token = getJwt() as string;
+      const response = await fetch(`/api/parse-jwt-token`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
+      const data = await response.json();
+      const { data: tokenData } = data;
+      const currentTimestamp = Math.floor(Date.now() / 1000); // 当前时间戳
+      if (tokenData.exp < currentTimestamp) {
+        // 'Token 已过期'
+        return false;
+      } else {
+        // 'Token 有效'
+        return true;
+      }
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+      return false;
+    }
+  }
+
   const doSubmit = async (userInput: string) => {
     // 如果未登陆casdoor(没有jwt), 提示登陆 !isLoggedIn()
     if (!isLoggedIn()) {
-      const copiedHello = Object.assign({}, BOT_HELLO);
-      copiedHello.content = Locale.Error.Unauthorized;
-      context.push(copiedHello);
-      // return
+      return navigate(Path.OAuth);
     }
-
+    // token是否过期
+    const parseJwted = await parseJwt();
+    if (!parseJwted) {
+      return navigate(Path.OAuth);
+    }
     // 先行检查使用次数
     const upperLimit = await checkUpperLimmit();
     if (upperLimit) {
@@ -912,12 +942,6 @@ export function Chat() {
   const context: RenderMessage[] = session.mask.hideContext
     ? []
     : session.mask.context.slice();
-
-  console.log(
-    "------- session.mask.hideContext ---- ",
-    session.mask.hideContext,
-  );
-  console.log("---- context ------", context);
 
   const accessStore = useAccessStore.getState();
 

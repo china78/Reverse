@@ -8,8 +8,6 @@ import { CASDOOR } from "@/app/constant";
 // 你的 casdoor 公钥证书，在 casdoor 面板中可以找到
 const cert = readFileSync(join(homedir(), ".ssh", "casdoor.pub"), "utf-8");
 
-console.log("--------------- cert --------------: ", cert);
-
 const authCfg = {
   endpoint: CASDOOR.endpoint,
   clientId: CASDOOR.clientId,

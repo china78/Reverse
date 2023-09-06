@@ -37,6 +37,10 @@ export const setJwt = (jwt: string) => {
   localStorage.setItem("jwt", jwt);
 };
 
+export const getJwt = () => {
+  return localStorage.getItem("jwt");
+};
+
 export const goToLink = (link: string) => {
   window.location.href = link;
 };
@@ -76,11 +80,9 @@ export function signin(params: {
     params.state,
   ).then((res: any) => {
     if (res.status === "ok") {
-      console.log("signin success", res);
       setJwt(res.data);
       params.successCb();
     } else {
-      console.log("signin failed", res);
       params.failCb();
     }
 

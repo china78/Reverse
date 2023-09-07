@@ -2,12 +2,12 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "../../db/prisma";
 
 export async function POST(req: NextRequest) {
-  const { userId } = await req.json();
+  const { id } = await req.json();
 
   try {
     // 查询用户的使用次数和会员状态
     const user = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id },
       select: { usages: true, isMember: true },
     });
 
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       if (user.isMember) {
         // 用户是会员，允许继续聊天
         return NextResponse.json({ upperLimit: false }, { status: 200 });
-      } else if (user.usages < 20) {
+      } else if (user.usages < 5) {
         // 用户不是会员但使用次数未达到20次，可以继续
         return NextResponse.json({ upperLimit: false }, { status: 200 });
       } else {

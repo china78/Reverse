@@ -574,11 +574,11 @@ export const useChatStore = create<ChatStore>()(
       },
       async recordChats() {
         // 从localStorage中获取userId
-        let userInfo = localStorage.getItem("user-info");
+        let userInfo = localStorage.getItem("casdoor-user-info");
         // 检查userId是否存在
         if (userInfo) {
           // 执行您的逻辑，使用userId
-          const body = { userId: JSON.parse(userInfo).userId };
+          const body = { id: JSON.parse(userInfo).id };
           const res = await fetch(`/api/record-chats`, {
             method: "POST",
             mode: "cors",

@@ -702,11 +702,11 @@ export function Chat() {
   };
 
   async function checkUpperLimmit() {
-    let userInfo = localStorage.getItem("user-info");
+    let userInfo = localStorage.getItem("casdoor-user-info");
     // 检查userId是否存在
     if (userInfo) {
       // 执行您的逻辑，使用userId
-      const body = { userId: JSON.parse(userInfo).userId };
+      const body = { id: JSON.parse(userInfo).id };
       const res = await fetch(`/api/check-upper-limit`, {
         method: "POST",
         mode: "cors",

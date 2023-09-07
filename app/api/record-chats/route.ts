@@ -2,10 +2,10 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "../../db/prisma";
 
 export async function POST(req: NextRequest) {
-  const { userId } = await req.json();
+  const { id } = await req.json();
   try {
     const user = await prisma.user.findUnique({
-      where: { id: userId },
+      where: { id },
     });
 
     if (!user) {
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     }
 
     const updatedUser = await prisma.user.update({
-      where: { id: userId },
+      where: { id },
       data: {
         usages: user.usages + 1,
       },

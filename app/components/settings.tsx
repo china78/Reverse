@@ -245,8 +245,6 @@ function SyncItems() {
   const syncStore = useSyncStore();
   const webdav = syncStore.webDavConfig;
 
-  return null;
-
   return (
     <List>
       <ListItem
@@ -386,12 +384,6 @@ export function Settings() {
 
   const clientConfig = useMemo(() => getClientConfig(), []);
   const showAccessCode = enabledAccessControl && !clientConfig?.isApp;
-  console.log(
-    `--------- enabledAccessControl:   ${enabledAccessControl} --------`,
-  );
-  console.log(
-    `--------- clientConfig?.isApp:   ${clientConfig?.isApp} --------`,
-  );
   return (
     <ErrorBoundary>
       <div className="window-header" data-tauri-drag-region>

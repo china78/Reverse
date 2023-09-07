@@ -37,7 +37,6 @@
     padding: 10px;
     border: 2px solid transparent;
     border-radius: 5px;
-    color: gray;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 32px; /* 原始字号为 30px，放大 2px */
@@ -51,16 +50,28 @@
     color: rgb(29, 147, 171);
     font-size: 18px; /* 原始字号为 16px，放大 2px */
   }
+  .dark {
+    color: black;
+  }
+  .light {
+    color: white;
+  }
 
   .rmb {
     font-size: 18px; /* 原始字号为 16px，放大 2px */
     padding-right: 2px;
   }
 
-  .originalPrice {
+  .originalPriceLight {
     text-decoration: line-through;
-    color: gray;
     font-size: 16px; /* 原始字号为 14px，放大 2px */
+    color: white;
+  }
+
+  .originalPriceDark {
+    text-decoration: line-through;
+    font-size: 16px; /* 原始字号为 14px，放大 2px */
+    color: black;
   }
 
   .option.selected {
@@ -90,6 +101,12 @@
     width: 200px;
     height: 200px;
     margin-top: 20px;
+  }
+
+  .imagesContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 设置图片之间的间距 */
   }
 
   .qrCode img {

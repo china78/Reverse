@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       if (user.isMember) {
         // 用户是会员，允许继续聊天
         return NextResponse.json({ upperLimit: false }, { status: 200 });
-      } else if (user.usages < 5) {
+      } else if (user.usages < 100) {
         // 用户不是会员但使用次数未达到20次，可以继续
         return NextResponse.json({ upperLimit: false }, { status: 200 });
       } else {

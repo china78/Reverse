@@ -4,9 +4,26 @@ import { PRINCES } from "../constant";
 import Image from "next/image";
 import { useAppConfig, Theme } from "../store";
 import { Button, Modal } from "antd";
+import { WechatOutlined, AlipayCircleOutlined } from "@ant-design/icons";
 
 const WECHAT = "wechat";
 const ALIPAY = "alipay";
+type CommReqAmountInfo = {
+  total: number; // 【总金额】 订单总金额，单位为分。
+  currency?: string; // 【货币类型】 CNY：人民币，境内商户号仅支持人民币。
+};
+
+type PayParams = {
+  appid: string; // 公众号ID】 公众号ID
+  mchid: string; // 【直连商户号】 直连商户号
+  description: string; // 【商品描述】 商品描述
+  out_trade_no: string; // 【商户订单号】 商户系统内部订单号，只能是数字、大小写字母_-*且在同一个商户号下唯一
+  notify_url: string; // 【通知地址】 异步接收微信支付结果通知的回调地址，
+  amount: CommReqAmountInfo;
+  scene_info: {
+    payer_client_ip: string;
+  };
+};
 export function Pay() {
   const [selectedTab, setSelectedTab] = useState(PRINCES[0].price);
 
@@ -37,50 +54,34 @@ export function Pay() {
     showModal();
   };
 
-  function handlePayment(params: string) {
+  async function handlePayment(params: string) {
     if (params === WECHAT) {
-      // 调用生成签名的函数
-      const auth = fetch("/api/generate-signature", {
+      const payParams: PayParams = {
+        appid: "wxa29f1b154a0856e3",
+        mchid: "1651683598",
+        description: "reverse",
+        out_trade_no: "434656576",
+        notify_url: "http://127.0.0.1:3000/#/pay",
+        amount: {
+          total: parseInt(selectedTab, 10),
+        },
+        scene_info: {
+          payer_client_ip: "ip",
+        },
+      };
+      const res = await fetch("/api/transactions_native", {
         method: "POST",
         mode: "cors",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({ params: payParams }),
       });
+      const wechatPay = await res.json();
+      console.log("微信支付请求二维码: ", wechatPay);
     } else {
     }
-  }
-
-  type CommReqAmountInfo = {
-    total: number; // 【总金额】 订单总金额，单位为分。
-    currency?: string; // 【货币类型】 CNY：人民币，境内商户号仅支持人民币。
-  };
-
-  type PayParams = {
-    appid: string; // 公众号ID】 公众号ID
-    mchid: string; // 【直连商户号】 直连商户号
-    description: string; // 【商品描述】 商品描述
-    out_trade_no: string; // 【商户订单号】 商户系统内部订单号，只能是数字、大小写字母_-*且在同一个商户号下唯一
-    notify_url: string; // 【通知地址】 异步接收微信支付结果通知的回调地址，
-    amount: CommReqAmountInfo;
-  };
-  async function wechatPay(params: PayParams) {
-    const res = await fetch(
-      "https://api.mch.weixin.qq.com//v3/pay/transactions/native",
-      {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: "",
-        },
-        body: JSON.stringify(params),
-      },
-    );
-    return res.json();
   }
 
   return (
@@ -132,13 +133,18 @@ export function Pay() {
           </div>
           <div>
             <Button
+              icon={<WechatOutlined />}
               style={{ marginRight: 10 }}
               type="primary"
               onClick={() => handlePayment(WECHAT)}
             >
               微信支付
             </Button>
-            <Button type="primary" onClick={() => handlePayment(ALIPAY)}>
+            <Button
+              icon={<AlipayCircleOutlined />}
+              type="primary"
+              onClick={() => handlePayment(ALIPAY)}
+            >
               支付宝支付
             </Button>
           </div>

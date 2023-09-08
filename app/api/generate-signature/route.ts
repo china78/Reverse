@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import { homedir } from "os";
 import { readFileSync } from "fs";
 import { join } from "path";
@@ -6,6 +5,7 @@ import { NextResponse, NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
 import forge from "node-forge";
+import crypto from "crypto";
 
 // 生成随机字符串
 const generateNonceStr = () => {
@@ -19,15 +19,13 @@ const generateNonceStr = () => {
   return nonceStr;
 };
 
-// 使用商户私钥对待签名串进行签名 SHA-256 with RSA
-const signWithPrivateKey = (
-  message: string,
-  privateKey: forge.pki.PrivateKey,
-) => {
-  const md = forge.md.sha256.create();
-  md.update(message, "utf8");
-  const signature = privateKey.sign(md);
-  return forge.util.encode64(signature);
+// 使用商户私钥给签名串进行签名 SHA-256 with RSA
+const signWithPrivateKey = (message: string, privateKey: any) => {
+  // const md = forge.md.sha256.create();
+  // md.update(message, "utf8");
+  // const signature = privateKey.sign(md);
+  // return forge.util.encode64(signature);
+  crypto.createSign("RSA-SHA256").update(message).sign(privateKey, "base64");
 };
 
 export async function POST(req: NextRequest) {
@@ -37,6 +35,13 @@ export async function POST(req: NextRequest) {
   const nonceStr = generateNonceStr();
   const requestBody = ""; // 请求方法为 GET，所以请求报文主体为空
 
+  /**
+   * HTTP请求方法\n
+     URL\n
+     请求时间戳\n
+     请求随机串\n
+    请求报文主体\n
+   */
   const signatureMessage = `${method}\n${url}\n${timestamp}\n${nonceStr}\n${requestBody}\n`;
 
   const privateKeyPem = readFileSync(

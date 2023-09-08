@@ -3,11 +3,14 @@ import styles from "./pay.module.scss";
 import { PRINCES } from "../constant";
 import Image from "next/image";
 import { useAppConfig, Theme } from "../store";
-import { generateSignature } from "../api/wechatAuthorization";
+import { Button, Modal } from "antd";
 
+const WECHAT = "wechat";
+const ALIPAY = "alipay";
 export function Pay() {
   const [selectedTab, setSelectedTab] = useState(PRINCES[0].price);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
   const [auth, setAuth] = useState("");
 
@@ -18,13 +21,36 @@ export function Pay() {
     setSelectedTab(tab);
   };
 
-  const handleConfirm = async () => {
-    // 处理确认逻辑
-    setShowQRCode(true); // 显示图片
-    // 调用生成签名的函数
-    const auth = await generateSignature();
-    console.log("----- auth ----: ", auth);
+  const showModal = () => {
+    setIsModalOpen(true);
   };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleConfirm = async () => {
+    showModal();
+  };
+
+  function handlePayment(params: string) {
+    if (params === WECHAT) {
+      // 调用生成签名的函数
+      const auth = fetch("/api/generate-signature", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+    } else {
+    }
+  }
 
   type CommReqAmountInfo = {
     total: number; // 【总金额】 订单总金额，单位为分。
@@ -90,8 +116,34 @@ export function Pay() {
         ))}
       </div>
       <button className={styles.button} onClick={handleConfirm}>
-        确认并开通
+        立即购买
       </button>
+      {/* 此位置弹框提示选择支付方式 */}
+      {isModalOpen && (
+        <Modal
+          footer={false}
+          title="购买资源包"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <div style={{ marginBottom: 10 }}>
+            请您使用支付软件支付 ￥{selectedTab}
+          </div>
+          <div>
+            <Button
+              style={{ marginRight: 10 }}
+              type="primary"
+              onClick={() => handlePayment(WECHAT)}
+            >
+              微信支付
+            </Button>
+            <Button type="primary" onClick={() => handlePayment(ALIPAY)}>
+              支付宝支付
+            </Button>
+          </div>
+        </Modal>
+      )}
       <div className={styles.qrCode}>
         {showQRCode && (
           <div className={styles.imagesContainer}>

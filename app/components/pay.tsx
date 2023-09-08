@@ -29,17 +29,25 @@ export function Pay() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
-  const [auth, setAuth] = useState("");
+  const [qrUrl, setqrUrl] = useState("");
 
   const config = useAppConfig();
   const theme = config.theme;
 
-  const handleTabClick = (tab: string) => {
+  const handleTabClick = (tab: number) => {
     setSelectedTab(tab);
   };
 
   const showModal = () => {
     setIsModalOpen(true);
+  };
+
+  const handleQrOk = () => {
+    setShowQRCode(false);
+  };
+
+  const handleQrCancel = () => {
+    setShowQRCode(false);
   };
 
   const handleOk = () => {
@@ -60,10 +68,10 @@ export function Pay() {
         appid: "wxa29f1b154a0856e3",
         mchid: "1651683598",
         description: "reverse",
-        out_trade_no: "434656576",
-        notify_url: "http://127.0.0.1:3000/#/pay",
+        out_trade_no: "4346565761",
+        notify_url: "https://subdomain.example.com/path/to/notify",
         amount: {
-          total: parseInt(selectedTab, 10),
+          total: Math.round(selectedTab * 100),
         },
         scene_info: {
           payer_client_ip: "ip",
@@ -78,8 +86,13 @@ export function Pay() {
         },
         body: JSON.stringify({ params: payParams }),
       });
-      const wechatPay = await res.json();
-      console.log("微信支付请求二维码: ", wechatPay);
+      if (res.ok) {
+        const data = await res.json();
+        const { qrUrl } = data?.data;
+        console.log("微信支付请求二维码: ", qrUrl);
+        setqrUrl(qrUrl);
+        setShowQRCode(true);
+      }
     } else {
     }
   }
@@ -120,44 +133,50 @@ export function Pay() {
         立即购买
       </button>
       {/* 此位置弹框提示选择支付方式 */}
-      {isModalOpen && (
-        <Modal
-          footer={false}
-          title="购买资源包"
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <div style={{ marginBottom: 10 }}>
-            请您使用支付软件支付 ￥{selectedTab}
-          </div>
-          <div>
-            <Button
-              icon={<WechatOutlined />}
-              style={{ marginRight: 10 }}
-              type="primary"
-              onClick={() => handlePayment(WECHAT)}
-            >
-              微信支付
-            </Button>
-            <Button
-              icon={<AlipayCircleOutlined />}
-              type="primary"
-              onClick={() => handlePayment(ALIPAY)}
-            >
-              支付宝支付
-            </Button>
-          </div>
-        </Modal>
-      )}
-      <div className={styles.qrCode}>
-        {showQRCode && (
-          <div className={styles.imagesContainer}>
-            <Image src="/alipay.jpg" alt="alipay" width={500} height={300} />
-            <Image src="/wechat.jpg" alt="wechat" width={500} height={300} />
-          </div>
-        )}
-      </div>
+      <Modal
+        width={300}
+        footer={false}
+        title="购买资源包"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <div style={{ marginBottom: 10 }}>
+          请您使用支付软件支付 ￥{selectedTab}
+        </div>
+        <div>
+          <Button
+            icon={<WechatOutlined />}
+            style={{ marginRight: 10 }}
+            type="primary"
+            onClick={() => handlePayment(WECHAT)}
+          >
+            微信支付
+          </Button>
+          <Button
+            icon={<AlipayCircleOutlined />}
+            type="primary"
+            onClick={() => handlePayment(ALIPAY)}
+          >
+            支付宝支付
+          </Button>
+        </div>
+      </Modal>
+      <Modal
+        onOk={handleQrOk}
+        onCancel={handleQrCancel}
+        footer={false}
+        width={300}
+        open={showQRCode}
+      >
+        <Image
+          src={qrUrl}
+          alt="qr"
+          width={300}
+          height={300}
+          layout="responsive"
+        />
+      </Modal>
     </div>
   );
 }

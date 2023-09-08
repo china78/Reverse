@@ -117,28 +117,28 @@ export const DEFAULT_MODELS = [
 export const PRINCES = [
   {
     name: "包年不限次",
-    price: "299.9",
-    originPrice: "720",
+    price: 299.9,
+    originPrice: 720,
   },
   {
     name: "包季不限次",
-    price: "89.9",
-    originPrice: "180",
+    price: 89.9,
+    originPrice: 180,
   },
   {
     name: "包月不限次",
-    price: "29.9",
-    originPrice: "60",
+    price: 29.9,
+    originPrice: 60,
   },
   {
     name: "三天不限次",
-    price: "9.9",
-    originPrice: "20",
+    price: 9.9,
+    originPrice: 20,
   },
 ] as {
   name: string;
-  price: string;
-  originPrice: string;
+  price: number;
+  originPrice: number;
 }[];
 
 export const CASDOOR = {

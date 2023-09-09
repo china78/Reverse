@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     if (result.status === 200) {
       const codeUrl = result?.code_url;
-
+      // 解析二维码
       const qrUrl = await new Promise((resolve, reject) => {
         qrcode.toDataURL(codeUrl, (error, url) => {
           if (error) {

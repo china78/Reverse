@@ -3,8 +3,9 @@ import styles from "./pay.module.scss";
 import { PRINCES } from "../constant";
 import Image from "next/image";
 import { useAppConfig, Theme } from "../store";
-import { Button, Modal } from "antd";
+import { Button, Modal, Spin } from "antd";
 import { WechatOutlined, AlipayCircleOutlined } from "@ant-design/icons";
+import { getLocalUserInfo } from "../Setting";
 
 const WECHAT = "wechat";
 const ALIPAY = "alipay";
@@ -25,17 +26,18 @@ type PayParams = {
   };
 };
 export function Pay() {
-  const [selectedTab, setSelectedTab] = useState(PRINCES[0].price);
+  const [selectedTab, setSelectedTab] = useState(PRINCES[0]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showQRCode, setShowQRCode] = useState(false);
   const [qrUrl, setqrUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const config = useAppConfig();
   const theme = config.theme;
 
-  const handleTabClick = (tab: number) => {
-    setSelectedTab(tab);
+  const handleTabClick = (item: PRINCES) => {
+    setSelectedTab(item);
   };
 
   const showModal = () => {
@@ -80,40 +82,104 @@ export function Pay() {
     return `${timestamp}${random}`;
   }
 
-  async function handlePayment(params: string) {
-    if (params === WECHAT) {
-      const payParams: PayParams = {
-        appid: "wxa29f1b154a0856e3",
-        mchid: "1651683598",
-        description: "reverse",
-        out_trade_no: generateOrderNumber(),
-        notify_url: "https://subdomain.example.com/path/to/notify",
-        amount: {
-          total: Math.round(selectedTab * 100),
-        },
-        scene_info: {
-          payer_client_ip: "ip",
-        },
-      };
-      const res = await fetch("/api/transactions_native", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ params: payParams }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        const { qrUrl } = data?.data;
-        console.log("微信支付请求二维码: ", qrUrl);
-        setqrUrl(qrUrl);
-        setShowQRCode(true);
-      }
-    } else {
+  let _out_trade_no: string;
+  let pollingInterval: NodeJS.Timeout | null = null;
+
+  function startPollingOrderResult() {
+    pollingInterval = setInterval(queryOrderResult, 2000); // 每2秒执行一次查询订单结果
+  }
+
+  function stopPollingOrderResult() {
+    if (pollingInterval) {
+      clearInterval(pollingInterval);
+      pollingInterval = null;
     }
   }
+
+  async function wechatPay() {
+    setLoading(true);
+    _out_trade_no = generateOrderNumber();
+    const payParams: PayParams = {
+      appid: "wxa29f1b154a0856e3",
+      mchid: "1651683598",
+      description: "reverse",
+      out_trade_no: _out_trade_no,
+      notify_url: "https://subdomain.example.com/path/to/notify",
+      amount: {
+        total: Math.round(selectedTab.price * 100),
+      },
+      scene_info: {
+        payer_client_ip: "ip",
+      },
+    };
+    const res = await fetch("/api/transactions_native", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ params: payParams }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const { qrUrl } = data?.data;
+      setqrUrl(qrUrl);
+      setShowQRCode(true); // 显示二维码
+      setLoading(false);
+      // 开始轮询查询订单结果
+      startPollingOrderResult();
+    }
+  }
+
+  async function alipay() {
+    console.log("alipay");
+  }
+
+  async function handlePayment(params: string) {
+    if (params === WECHAT) {
+      wechatPay();
+    } else {
+      alipay();
+    }
+  }
+
+  let userInfo = getLocalUserInfo() as any;
+
+  async function queryOrderResult() {
+    // 存储订单数据到 Order 表
+    const orderData = {
+      userId: JSON.parse(userInfo)?.id, // 替换为实际的用户ID
+      subscriptionId: selectedTab.subscriptionId, // 替换为实际的订阅ID
+      createdAt: new Date(), // 替换为实际的订单创建时间
+      amount: selectedTab.price, // 替换为实际的订单金额
+      subscriptionType: selectedTab.subscriptionType, // 替换为实际的订阅类型
+    };
+
+    const res = await fetch("/api/order-query", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ out_trade_no: _out_trade_no, ...orderData }),
+    });
+
+    const data = await res.json();
+    console.log("查询订单结果: ", data);
+    if (data?.status === 200) {
+      // 订单支付成功，停止轮询
+      stopPollingOrderResult();
+    }
+  }
+
+  useEffect(() => {
+    // 组件卸载时停止轮询
+    return () => {
+      stopPollingOrderResult();
+    };
+  }, []);
 
   return (
     <div className={styles.pay}>
@@ -126,9 +192,9 @@ export function Pay() {
           <div
             key={key}
             className={`${styles.option} ${
-              selectedTab === item.price ? styles.selected : ""
+              selectedTab.price === item.price ? styles.selected : ""
             }`}
-            onClick={() => handleTabClick(item.price)}
+            onClick={() => handleTabClick(item)}
           >
             <div className={styles.optionTitle}>{item.name}</div>
             <div className={theme === Theme.Light ? styles.dark : styles.light}>
@@ -159,8 +225,19 @@ export function Pay() {
         onOk={handleOk}
         onCancel={handleCancel}
       >
+        {loading && (
+          <Spin tip="支付准备中...">
+            <div
+              style={{
+                padding: 50,
+                background: "rgba(0, 0, 0, 0.05)",
+                borderRadius: 4,
+              }}
+            />
+          </Spin>
+        )}
         <div style={{ marginBottom: 10 }}>
-          请您使用支付软件支付 ￥{selectedTab}
+          请您使用支付软件支付 ￥{selectedTab.price}
         </div>
         <div>
           <Button
@@ -168,6 +245,7 @@ export function Pay() {
             style={{ marginRight: 10 }}
             type="primary"
             onClick={() => handlePayment(WECHAT)}
+            disabled={loading}
           >
             微信支付
           </Button>
@@ -175,6 +253,7 @@ export function Pay() {
             icon={<AlipayCircleOutlined />}
             type="primary"
             onClick={() => handlePayment(ALIPAY)}
+            disabled={loading}
           >
             支付宝支付
           </Button>

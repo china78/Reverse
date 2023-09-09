@@ -41,6 +41,10 @@ export const setUserInfo = (userInfo: string) => {
   localStorage.setItem("casdoor-user-info", userInfo);
 };
 
+export const getLocalUserInfo = () => {
+  return localStorage.getItem("casdoor-user-info");
+};
+
 export const getJwt = () => {
   return localStorage.getItem("jwt");
 };

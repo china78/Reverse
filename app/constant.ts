@@ -114,32 +114,50 @@ export const DEFAULT_MODELS = [
   },
 ] as const;
 
-export const PRINCES = [
+export type PRINCES = {
+  name: string;
+  price: number;
+  originPrice: number;
+  subscriptionId: string;
+  subscriptionType: string;
+};
+export const PRINCES: PRINCES[] = [
   {
     name: "包年不限次",
     price: 299.9,
     originPrice: 720,
+    subscriptionId: "1",
+    subscriptionType: "包年",
   },
   {
     name: "包季不限次",
     price: 89.9,
     originPrice: 180,
+    subscriptionId: "2",
+    subscriptionType: "包季",
   },
   {
     name: "包月不限次",
     price: 29.9,
     originPrice: 60,
+    subscriptionId: "3",
+    subscriptionType: "包月",
   },
   {
     name: "三天不限次",
     price: 9.9,
     originPrice: 20,
+    subscriptionId: "4",
+    subscriptionType: "三天",
   },
-] as {
-  name: string;
-  price: number;
-  originPrice: number;
-}[];
+  {
+    name: "测试",
+    price: 0.1,
+    originPrice: 1,
+    subscriptionId: "5",
+    subscriptionType: "测试",
+  },
+];
 
 export const CASDOOR = {
   endpoint: "http://localhost:7001", // 开发

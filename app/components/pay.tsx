@@ -62,13 +62,31 @@ export function Pay() {
     showModal();
   };
 
+  // 生成随机数
+  function generateRandomNumber(length: number) {
+    const characters = "0123456789";
+    let result = "";
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+    return result;
+  }
+
+  // 生成订单号
+  function generateOrderNumber() {
+    const timestamp = Date.now();
+    const random = generateRandomNumber(6); // 随机数的长度
+    return `${timestamp}${random}`;
+  }
+
   async function handlePayment(params: string) {
     if (params === WECHAT) {
       const payParams: PayParams = {
         appid: "wxa29f1b154a0856e3",
         mchid: "1651683598",
         description: "reverse",
-        out_trade_no: "4346565761",
+        out_trade_no: generateOrderNumber(),
         notify_url: "https://subdomain.example.com/path/to/notify",
         amount: {
           total: Math.round(selectedTab * 100),

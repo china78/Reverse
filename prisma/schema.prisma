@@ -40,6 +40,7 @@ model User {
   isMember       Boolean       @default(false)
   subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
   subscriptionId Int?
+  orders         Order[] // 一个用户可以有很多订单
 }
 
 model Subscription {
@@ -47,6 +48,18 @@ model Subscription {
   type        String   // 套餐类型：月卡、季卡、年卡、终身
   price       Float    // 套餐价格
   users       User[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  orders      Order[] // 一个档位里可以有很多订单
+}
+
+model Order {
+  id              Int           @id
+  userId          String        // 订单肯定是某用户创建的
+  subscriptionId  Int           
+  createdAt       String
+  amount          Float         // 订单金额
+  subscriptionType String       // 订阅类型
+
+  // 关联关系
+  user            User          @relation(fields: [userId], references: [id])
+  subscription    Subscription  @relation(fields: [subscriptionId], references: [id])
 }

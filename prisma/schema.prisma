@@ -27,23 +27,24 @@ model User {
 }
 
 model Subscription {
-  id          String     @id
-  type        String   // 套餐类型：月卡、季卡、年卡、终身
+  id          String   @id
+  type        String    // 套餐类型：三天、月卡、季卡、年卡
   price       Float    // 套餐价格
   users       User[]
   orders      Order[] // 一个档位里可以有很多订单
 }
 
 model Order {
-  id                String           @id
+  id                Int           @id @default(autoincrement())
+  orderNumber       String        @unique
   userId            String        // 订单肯定是某用户创建的
   subscriptionId    String           
   createdAt         String
-  amount             Float         // 订单金额
-  subscriptionType   String       // 订阅类型
-  transaction_id     String       // 交易id
-  success_time       String       // 交易时间
+  amount            Float         // 订单金额
+  subscriptionType  String       // 订阅类型
+  transaction_id    String       // 交易id
+  success_time      String       // 交易时间
   // 关联关系
-  user            User          @relation(fields: [userId], references: [id])
-  subscription    Subscription  @relation(fields: [subscriptionId], references: [id])
+  user              User          @relation(fields: [userId], references: [id])
+  subscription      Subscription  @relation(fields: [subscriptionId], references: [id])
 }

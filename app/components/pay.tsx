@@ -3,7 +3,7 @@ import styles from "./pay.module.scss";
 import { PRINCES } from "../constant";
 import Image from "next/image";
 import { useAppConfig, Theme } from "../store";
-import { Button, Modal, Spin } from "antd";
+import { Button, Modal, Spin, message } from "antd";
 import { WechatOutlined, AlipayCircleOutlined } from "@ant-design/icons";
 import { getLocalUserInfo } from "../Setting";
 
@@ -168,9 +168,11 @@ export function Pay() {
 
     const data = await res.json();
     console.log("查询订单结果: ", data);
-    if (data?.status === 200) {
+    if (data?.success && data.message === "订单数据存储成功") {
+      message.success("订单支付成功");
       // 订单支付成功，停止轮询
       stopPollingOrderResult();
+      // 这里需要关掉二维码，跳转到chat，
     }
   }
 

@@ -40,7 +40,7 @@ type Payed = {
   transaction_id: string;
 };
 type OrderData = {
-  id: string;
+  orderNumber: string;
   userId: string;
   createdAt: string;
   amount: number;
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
     if (result?.trade_state === "SUCCESS") {
       // 订单支付成功，存储订单信息到 Order 表
       const orderData: OrderData = {
-        id: out_trade_no, //订单id
+        orderNumber: out_trade_no, //订单id
         userId, // 用户id
         subscriptionId, // 订阅id
         createdAt, // 订单创建时间
@@ -76,16 +76,9 @@ export async function POST(req: NextRequest) {
         success_time: result.success_time!, // 交易成功时间
       };
 
-      console.log(
-        "----------------orderData------------------------: ",
-        orderData,
-      );
-
       const createdOrder = await prisma.order.create({
         data: orderData,
       });
-
-      console.log(" ---- createdOrder ----: ", createdOrder);
 
       if (createdOrder) {
         // 数据存储成功，返回成功提示给前端

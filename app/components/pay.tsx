@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./pay.module.scss";
-import { PRINCES } from "../constant";
+import { PRINCES, Path } from "../constant";
 import Image from "next/image";
 import { useAppConfig, Theme } from "../store";
 import { Button, Modal, Spin, message } from "antd";
 import { WechatOutlined, AlipayCircleOutlined } from "@ant-design/icons";
 import { getLocalUserInfo } from "../Setting";
+import { useNavigate } from "react-router-dom";
 
 const WECHAT = "wechat";
 const ALIPAY = "alipay";
@@ -32,6 +33,8 @@ export function Pay() {
   const [showQRCode, setShowQRCode] = useState(false);
   const [qrUrl, setqrUrl] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const config = useAppConfig();
   const theme = config.theme;
@@ -169,10 +172,14 @@ export function Pay() {
     const data = await res.json();
     console.log("查询订单结果: ", data);
     if (data?.success && data.message === "订单数据存储成功") {
+      // 把用户设置成会员
+
       message.success("订单支付成功");
       // 订单支付成功，停止轮询
       stopPollingOrderResult();
       // 这里需要关掉二维码，跳转到chat，
+      setShowQRCode(false);
+      navigate(Path.Chat);
     }
   }
 

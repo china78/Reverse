@@ -64,6 +64,16 @@ export async function POST(req: NextRequest) {
     const result: Partial<Payed> = await pay.query({ out_trade_no });
 
     if (result?.trade_state === "SUCCESS") {
+      // 把用户修改成会员
+      try {
+        const updatedUser = await prisma.user.update({
+          where: { id: userId },
+          data: { isMember: true },
+        });
+        NextResponse.json({ data: updatedUser }, { status: 200 });
+      } catch (error) {
+        NextResponse.json({ error: "Internal server error" }, { status: 500 });
+      }
       // 订单支付成功，存储订单信息到 Order 表
       const orderData: OrderData = {
         orderNumber: out_trade_no, //订单id

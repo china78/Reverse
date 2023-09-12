@@ -24,8 +24,8 @@ if (process.env.GITHUB_ACTIONS) {
   payOptions.privateKey = process.env.PRIVATE_KEY_PATH;
 } else if (process.env.NODE_ENV === "production") {
   // 生产环境下加载密钥文件路径
-  payOptions.publicKey = fs.readFileSync("/path/to/public_key.pem");
-  payOptions.privateKey = fs.readFileSync("/path/to/private_key.pem");
+  payOptions.publicKey = fs.readFileSync("/.ssh/zhongbang/apiclient_cert.pem");
+  payOptions.privateKey = fs.readFileSync("/.ssh/zhongbang/apiclient_key.pem");
 } else {
   // 开发环境下直接引用本地文件路径
   payOptions.publicKey = fs.readFileSync(

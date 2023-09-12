@@ -29,4 +29,5 @@ jobs:
       run: echo "$APICLIENT_KEY" > $HOME/.ssh/zhongbang/apiclient_key.pem
     
     - name: Build the Docker image
+      working-directory: .
       run: docker build . --file Dockerfile --tag chat:$(date +%s)

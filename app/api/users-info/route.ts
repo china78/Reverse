@@ -19,7 +19,6 @@ const sdk = new SDK(authCfg);
 export async function GET(req: NextRequest) {
   try {
     const result = await sdk.getUsers();
-    console.log("------getUsers.result-------: ", result);
     return NextResponse.json({ data: result, status: "ok" }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error, status: "error" }, { status: 500 });

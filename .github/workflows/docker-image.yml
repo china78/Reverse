@@ -15,8 +15,8 @@ jobs:
     
     - name: Set up SSH directory
       run: |
-        mkdir -p $HOME/.ssh
-        chmod 700 $HOME/.ssh
+        mkdir -p $HOME/.ssh/zhongbang
+        chmod 700 $HOME/.ssh/zhongbang
     
     - name: Write APICLIENT_CERT to file
       env:

@@ -55,5 +55,16 @@ export function OAuthPage() {
     fetchData();
   }, [authing, location.search, navigate]);
 
-  return <div>{authing ? "认证中，请稍后" : "认证成功，即将跳转..."}</div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
+      {authing ? "认证中，请稍后..." : "认证成功，即将跳转..."}
+    </div>
+  );
 }

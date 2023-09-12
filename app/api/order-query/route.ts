@@ -2,17 +2,42 @@ import { NextResponse, NextRequest } from "next/server";
 import WxPay from "wechatpay-node-v3";
 import fs from "fs";
 import prisma from "@/app/db/prisma";
+import { Ipay } from "wechatpay-node-v3/dist/lib/interface";
 
-const pay = new WxPay({
+type PayOptions = {
+  appid: string;
+  mchid: string;
+  publicKey: any;
+  privateKey: any;
+};
+
+const payOptions: PayOptions = {
   appid: "wxa29f1b154a0856e3",
   mchid: "1651683598",
-  publicKey: fs.readFileSync(
+  publicKey: "",
+  privateKey: "",
+};
+
+if (process.env.GITHUB_ACTIONS) {
+  // GitHub Actions 环境下使用环境变量加载密钥文件路径
+  payOptions.publicKey = process.env.PUBLIC_KEY_PATH;
+  payOptions.privateKey = process.env.PRIVATE_KEY_PATH;
+} else if (process.env.NODE_ENV === "production") {
+  // 生产环境下加载密钥文件路径
+  payOptions.publicKey = fs.readFileSync("/path/to/public_key.pem");
+  payOptions.privateKey = fs.readFileSync("/path/to/private_key.pem");
+} else {
+  // 开发环境下直接引用本地文件路径
+  payOptions.publicKey = fs.readFileSync(
     "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
-  ), // 公钥
-  privateKey: fs.readFileSync(
+  );
+  payOptions.privateKey = fs.readFileSync(
     "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
-  ), // 秘钥
-});
+  );
+}
+
+const pay = new WxPay(payOptions as Ipay);
+
 type Payed = {
   amount: {
     currency: string;

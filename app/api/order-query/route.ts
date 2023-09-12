@@ -18,14 +18,10 @@ const payOptions: PayOptions = {
   privateKey: "",
 };
 
-if (process.env.GITHUB_ACTIONS) {
-  // GitHub Actions 环境下使用环境变量加载密钥文件路径
-  payOptions.publicKey = process.env.PUBLIC_KEY_PATH;
-  payOptions.privateKey = process.env.PRIVATE_KEY_PATH;
-} else if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   // 生产环境下加载密钥文件路径
-  payOptions.publicKey = fs.readFileSync("/.ssh/zhongbang/apiclient_cert.pem");
-  payOptions.privateKey = fs.readFileSync("/.ssh/zhongbang/apiclient_key.pem");
+  payOptions.publicKey = fs.readFileSync("/.ssh/zhongbang/apiclient_cert.pem"); // APICLIENT_CERT
+  payOptions.privateKey = fs.readFileSync("/.ssh/zhongbang/apiclient_key.pem"); // APICLIENT_KEY
 } else {
   // 开发环境下直接引用本地文件路径
   payOptions.publicKey = fs.readFileSync(

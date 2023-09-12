@@ -146,7 +146,7 @@ const jp: PartialLocaleType = {
     Token: {
       Title: "APIキー",
       SubTitle: "自分のキーを使用してパスワードアクセス制限を迂回する",
-      Placeholder: "OpenAI APIキー",
+      Placeholder: "TG-POWER APIキー",
     },
     Usage: {
       Title: "残高照会",

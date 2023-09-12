@@ -76,7 +76,7 @@ const ko: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "시스템 프롬프트 주입",
       SubTitle:
-        "각 요청의 메시지 목록의 시작에 ChatGPT 시스템 프롬프트를 강제로 추가합니다",
+        "각 요청의 메시지 목록의 시작에 Reverse 시스템 프롬프트를 강제로 추가합니다",
     },
     Update: {
       Version: (x: string) => `버전: ${x}`,
@@ -128,7 +128,7 @@ const ko: PartialLocaleType = {
     Token: {
       Title: "API 키",
       SubTitle: "액세스 코드 제한을 무시하기 위해 키 사용",
-      Placeholder: "OpenAI API 키",
+      Placeholder: "TG-POWER API 키",
     },
     Usage: {
       Title: "계정 잔액",

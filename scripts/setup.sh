@@ -52,7 +52,7 @@ fi
 
 # Clone the repository and install dependencies
 git clone https://github.com/
-cd ChatGPT-Next-Web
+cd Reverse-Next-Web
 yarn install
 
 # Prompt user for environment variables

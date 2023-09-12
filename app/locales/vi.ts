@@ -12,7 +12,7 @@ const vi: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} tin nhắn`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} tin nhắn với ChatGPT`,
+    SubTitle: (count: number) => `${count} tin nhắn với Reverse`,
     Actions: {
       ChatList: "Xem danh sách chat",
       CompressedHistory: "Nén tin nhắn trong quá khứ",
@@ -42,7 +42,7 @@ const vi: PartialLocaleType = {
     Copy: "Sao chép tất cả",
     Download: "Tải xuống",
     MessageFromYou: "Tin nhắn của bạn",
-    MessageFromChatGPT: "Tin nhắn từ ChatGPT",
+    MessageFromChatGPT: "Tin nhắn từ Reverse",
   },
   Memory: {
     Title: "Lịch sử tin nhắn",
@@ -75,7 +75,7 @@ const vi: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "Tiêm Prompt Hệ thống",
       SubTitle:
-        "Bắt buộc thêm một prompt hệ thống giả lập ChatGPT ở đầu danh sách tin nhắn cho mỗi yêu cầu",
+        "Bắt buộc thêm một prompt hệ thống giả lập Reverse ở đầu danh sách tin nhắn cho mỗi yêu cầu",
     },
     Update: {
       Version: (x: string) => `Phiên bản: ${x}`,
@@ -127,7 +127,7 @@ const vi: PartialLocaleType = {
     Token: {
       Title: "API Key",
       SubTitle: "Sử dụng khóa của bạn để bỏ qua giới hạn mã truy cập",
-      Placeholder: "OpenAI API Key",
+      Placeholder: "TG-POWER API Key",
     },
     Usage: {
       Title: "Hạn mức tài khoản",
@@ -167,7 +167,7 @@ const vi: PartialLocaleType = {
     Error: "Có lỗi xảy ra, vui lòng thử lại sau.",
     Prompt: {
       History: (content: string) =>
-        "Tóm tắt ngắn gọn cuộc trò chuyện giữa người dùng và AI: " + content,
+        "Tóm tắt ngắn gọn cuộc trò chuyện giữa người dùng và: " + content,
       Topic:
         "Sử dụng 4 đến 5 từ tóm tắt cuộc trò chuyện này mà không có phần mở đầu, dấu chấm câu, dấu ngoặc kép, dấu chấm, ký hiệu hoặc văn bản bổ sung nào. Loại bỏ các dấu ngoặc kép kèm theo.",
       Summarize:

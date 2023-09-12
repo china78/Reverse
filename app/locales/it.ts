@@ -12,7 +12,7 @@ const it: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} messaggi`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} messaggi con ChatGPT`,
+    SubTitle: (count: number) => `${count} messaggi con Reverse`,
     Actions: {
       ChatList: "Vai alla Chat List",
       CompressedHistory: "Prompt di memoria della cronologia compressa",
@@ -42,7 +42,7 @@ const it: PartialLocaleType = {
     Copy: "Copia tutto",
     Download: "Scarica",
     MessageFromYou: "Messaggio da te",
-    MessageFromChatGPT: "Messaggio da ChatGPT",
+    MessageFromChatGPT: "Messaggio da Reverse",
   },
   Memory: {
     Title: "Prompt di memoria",
@@ -75,7 +75,7 @@ const it: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "Inserisci Prompts di Sistema",
       SubTitle:
-        "Aggiungi forzatamente un prompt di sistema simulato di ChatGPT all'inizio della lista dei messaggi per ogni richiesta",
+        "Aggiungi forzatamente un prompt di sistema simulato di Reverse all'inizio della lista dei messaggi per ogni richiesta",
     },
     Update: {
       Version: (x: string) => `Versione: ${x}`,
@@ -129,7 +129,7 @@ const it: PartialLocaleType = {
       Title: "API Key",
       SubTitle:
         "Utilizzare la chiave per ignorare il limite del codice di accesso",
-      Placeholder: "OpenAI API Key",
+      Placeholder: "TG-POWER API Key",
     },
     Usage: {
       Title: "Bilancio Account",

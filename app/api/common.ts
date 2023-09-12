@@ -68,7 +68,7 @@ export async function requestOpenai(req: NextRequest) {
         );
       }
     } catch (e) {
-      console.error("[OpenAI] gpt4 filter", e);
+      console.error("[TG-POWER] gpt4 filter", e);
     }
   }
 

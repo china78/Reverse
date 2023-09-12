@@ -12,7 +12,7 @@ const tw: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} 條對話`,
   },
   Chat: {
-    SubTitle: (count: number) => `您已經與 ChatGPT 進行了 ${count} 條對話`,
+    SubTitle: (count: number) => `您已經與 Reverse 進行了 ${count} 條對話`,
     Actions: {
       ChatList: "查看訊息列表",
       CompressedHistory: "查看壓縮後的歷史 Prompt",
@@ -42,7 +42,7 @@ const tw: PartialLocaleType = {
     Copy: "複製全部",
     Download: "下載檔案",
     MessageFromYou: "來自您的訊息",
-    MessageFromChatGPT: "來自 ChatGPT 的訊息",
+    MessageFromChatGPT: "來自 Reverse 的訊息",
   },
   Memory: {
     Title: "上下文記憶 Prompt",
@@ -73,7 +73,7 @@ const tw: PartialLocaleType = {
     },
     InjectSystemPrompts: {
       Title: "注入系統提示",
-      SubTitle: "強制在每個請求的訊息列表開頭添加一個模擬 ChatGPT 的系統提示",
+      SubTitle: "強制在每個請求的訊息列表開頭添加一個模擬 Reverse 的系統提示",
     },
     Update: {
       Version: (x: string) => `當前版本：${x}`,
@@ -125,7 +125,7 @@ const tw: PartialLocaleType = {
     Token: {
       Title: "API Key",
       SubTitle: "使用自己的 Key 可規避授權存取限制",
-      Placeholder: "OpenAI API Key",
+      Placeholder: "TG-POWER API Key",
     },
     Usage: {
       Title: "帳戶餘額",
@@ -165,7 +165,7 @@ const tw: PartialLocaleType = {
     Error: "出錯了，請稍後再嘗試",
     Prompt: {
       History: (content: string) =>
-        "這是 AI 與用戶的歷史聊天總結，作為前情提要：" + content,
+        "這是 與用戶的歷史聊天總結，作為前情提要：" + content,
       Topic:
         "Use the language used by the user (e.g. en for english conversation, zh-hant for chinese conversation, etc.) to generate a title (at most 6 words) summarizing our conversation without any lead-in, quotation marks, preamble like 'Title:', direct text copies, single-word replies, quotation marks, translations, or brackets. Remove enclosing quotation marks. The title should make third-party grasp the essence of the conversation in first sight.",
       Summarize:

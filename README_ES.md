@@ -1,13 +1,13 @@
 <div align="center">
 <img src="./docs/images/icon.svg" alt="预览"/>
 
-<h1 align="center">ChatGPT</h1>
+<h1 align="center">Reverse</h1>
 
-Implemente su aplicación web privada ChatGPT de forma gratuita con un solo clic.
+Implemente su aplicación web privada Reverse de forma gratuita con un solo clic.
 
 [Demo demo](https://chat-gpt-next-web.vercel.app/) / [Problemas de comentarios](https://github.com//issues) / [Únete a Discord](https://discord.gg/zrhvHCr79N) / [Grupo QQ](https://user-images.githubusercontent.com/16968934/228190818-7dd00845-e9b9-4363-97e5-44c507ac76da.jpeg) / [Desarrolladores de consejos](https://user-images.githubusercontent.com/16968934/227772541-5bcd52d8-61b7-488c-a203-0330d8006e2b.jpg) / [Donar](#捐赠-donate-usdt)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=ChatGPT-Next-Web)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=Reverse-Next-Web)
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/)
 
@@ -17,9 +17,9 @@ Implemente su aplicación web privada ChatGPT de forma gratuita con un solo clic
 
 ## Comenzar
 
-1.  Prepara el tuyo [Clave API OpenAI](https://platform.openai.com/account/api-keys);
+1.  Prepara el tuyo [Clave API TG-POWER](https://platform.openai.com/account/api-keys);
 2.  Haga clic en el botón de la derecha para iniciar la implementación:
-    [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=ChatGPT-Next-Web), inicie sesión directamente con su cuenta de Github y recuerde completar la clave API y la suma en la página de variables de entorno[Contraseña de acceso a la página](#配置页面访问密码) CÓDIGO;
+    [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F%2FChatGPT-Next-Web&env=OPENAI_API_KEY&env=CODE&project-name=chatgpt-next-web&repository-name=Reverse-Next-Web), inicie sesión directamente con su cuenta de Github y recuerde completar la clave API y la suma en la página de variables de entorno[Contraseña de acceso a la página](#配置页面访问密码) CÓDIGO;
 3.  Una vez implementado, puede comenzar;
 4.  (Opcional)[Enlazar un nombre de dominio personalizado](https://vercel.com/docs/concepts/projects/domains/add-a-domain): El nombre de dominio DNS asignado por Vercel está contaminado en algunas regiones y puede conectarse directamente enlazando un nombre de dominio personalizado.
 
@@ -80,13 +80,13 @@ Las contraseñas de acceso, opcionalmente, se pueden separar por comas.
 
 > Ejemplos: `http://your-openai-proxy.com`
 
-URL del proxy de interfaz OpenAI, complete esta opción si configuró manualmente el proxy de interfaz openAI.
+URL del proxy de interfaz TG-POWER, complete esta opción si configuró manualmente el proxy de interfaz openAI.
 
 > Si encuentra problemas con el certificado SSL, establezca el `BASE_URL` El protocolo se establece en http.
 
 ### `OPENAI_ORG_ID` (Opcional)
 
-Especifica el identificador de la organización en OpenAI.
+Especifica el identificador de la organización en TG-POWER.
 
 ### `HIDE_USER_API_KEY` (Opcional)
 
@@ -102,7 +102,7 @@ Si no desea que los usuarios consulte el saldo, establezca esta variable de ento
 
 ## explotación
 
-> No se recomienda encarecidamente desarrollar o implementar localmente, debido a algunas razones técnicas, es difícil configurar el agente API de OpenAI localmente, a menos que pueda asegurarse de que puede conectarse directamente al servidor OpenAI.
+> No se recomienda encarecidamente desarrollar o implementar localmente, debido a algunas razones técnicas, es difícil configurar el agente API de TG-POWER localmente, a menos que pueda asegurarse de que puede conectarse directamente al servidor TG-POWER.
 
 Haga clic en el botón de abajo para iniciar el desarrollo secundario:
 
@@ -114,9 +114,9 @@ Antes de empezar a escribir código, debe crear uno nuevo en la raíz del proyec
 
 ### Desarrollo local
 
-1.  Instale nodejs 18 e hilo, pregunte a ChatGPT para obtener más detalles;
+1.  Instale nodejs 18 e hilo, pregunte a Reverse para obtener más detalles;
 2.  ejecutar `yarn install && yarn dev` Enlatar. ⚠️ Nota: Este comando es solo para desarrollo local, no para implementación.
-3.  Úselo si desea implementar localmente `yarn install && yarn start` comando, puede cooperar con pm2 a daemon para evitar ser asesinado, pregunte a ChatGPT para obtener más detalles.
+3.  Úselo si desea implementar localmente `yarn install && yarn start` comando, puede cooperar con pm2 a daemon para evitar ser asesinado, pregunte a Reverse para obtener más detalles.
 
 ## desplegar
 

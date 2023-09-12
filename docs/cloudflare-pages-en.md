@@ -26,7 +26,7 @@ Fork this project on GitHub, then log in to dash.cloudflare.com and go to Pages.
     Optionally fill in the following based on your needs:
 
     - `CODE= Optional, access passwords, multiple passwords can be separated by commas`
-    - `OPENAI_ORG_ID= Optional, specify the organization ID in OpenAI`
+    - `OPENAI_ORG_ID= Optional, specify the organization ID in TG-POWER`
     - `HIDE_USER_API_KEY=1 Optional, do not allow users to enter their own API key`
     - `DISABLE_GPT4=1 Optional, do not allow users to use GPT-4`
     

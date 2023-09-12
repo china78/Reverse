@@ -26,7 +26,7 @@ Bifurca el proyecto en Github, luego inicia sesión en dash.cloudflare.com y ve 
     Dependiendo de sus necesidades reales, puede completar opcionalmente las siguientes opciones:
 
     *   `CODE= 可选填，访问密码，可以使用逗号隔开多个密码`
-    *   `OPENAI_ORG_ID= 可选填，指定 OpenAI 中的组织 ID`
+    *   `OPENAI_ORG_ID= 可选填，指定 TG-POWER 中的组织 ID`
     *   `HIDE_USER_API_KEY=1 可选，不让用户自行填入 API Key`
     *   `DISABLE_GPT4=1 可选，不让用户使用 GPT-4`
 12. Haga clic en "Guardar e implementar".

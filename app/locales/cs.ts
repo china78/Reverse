@@ -12,7 +12,7 @@ const cs: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} zpráv`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} zpráv s ChatGPT`,
+    SubTitle: (count: number) => `${count} zpráv s Reverse`,
     Actions: {
       ChatList: "Přejít na seznam chatů",
       CompressedHistory: "Pokyn z komprimované paměti historie",
@@ -42,7 +42,7 @@ const cs: PartialLocaleType = {
     Copy: "Kopírovat vše",
     Download: "Stáhnout",
     MessageFromYou: "Zpráva od vás",
-    MessageFromChatGPT: "Zpráva z ChatGPT",
+    MessageFromChatGPT: "Zpráva z Reverse",
   },
   Memory: {
     Title: "Pokyn z paměti",
@@ -75,7 +75,7 @@ const cs: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "Vložit systémové prompty",
       SubTitle:
-        "Vynutit přidání simulovaného systémového promptu ChatGPT na začátek seznamu zpráv každého požadavku",
+        "Vynutit přidání simulovaného systémového promptu Reverse na začátek seznamu zpráv každého požadavku",
     },
     Update: {
       Version: (x: string) => `Verze: ${x}`,
@@ -128,7 +128,7 @@ const cs: PartialLocaleType = {
     Token: {
       Title: "API klíč",
       SubTitle: "Použitím klíče ignorujete omezení přístupového kódu",
-      Placeholder: "Klíč API OpenAI",
+      Placeholder: "Klíč API TG-POWER",
     },
     Usage: {
       Title: "Stav účtu",

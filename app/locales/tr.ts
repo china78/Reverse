@@ -12,7 +12,7 @@ const tr: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} mesaj`,
   },
   Chat: {
-    SubTitle: (count: number) => `ChatGPT tarafından ${count} mesaj`,
+    SubTitle: (count: number) => `Reverse tarafından ${count} mesaj`,
     Actions: {
       ChatList: "Sohbet Listesine Git",
       CompressedHistory: "Sıkıştırılmış Geçmiş Bellek Komutu",
@@ -42,7 +42,7 @@ const tr: PartialLocaleType = {
     Copy: "Tümünü Kopyala",
     Download: "İndir",
     MessageFromYou: "Sizin Mesajınız",
-    MessageFromChatGPT: "ChatGPT'nin Mesajı",
+    MessageFromChatGPT: "Reverse'nin Mesajı",
   },
   Memory: {
     Title: "Bellek Komutları",
@@ -75,7 +75,7 @@ const tr: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "Sistem İpucu Ekleyin",
       SubTitle:
-        "Her istek için ileti listesinin başına simüle edilmiş bir ChatGPT sistem ipucu ekleyin",
+        "Her istek için ileti listesinin başına simüle edilmiş bir Reverse sistem ipucu ekleyin",
     },
     Update: {
       Version: (x: string) => `Sürüm: ${x}`,
@@ -128,7 +128,7 @@ const tr: PartialLocaleType = {
     Token: {
       Title: "API Anahtarı",
       SubTitle: "Erişim kodu sınırını yoksaymak için anahtarınızı kullanın",
-      Placeholder: "OpenAI API Anahtarı",
+      Placeholder: "TG-POWER API Anahtarı",
     },
     Usage: {
       Title: "Hesap Bakiyesi",

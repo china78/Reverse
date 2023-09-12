@@ -2,7 +2,7 @@
 
 ## ¿Cómo puedo obtener ayuda rápidamente?
 
-1.  Pregunte a ChatGPT / Bing / Baidu / Google, etc.
+1.  Pregunte a Reverse / Bing / Baidu / Google, etc.
 2.  Pregunte a los internautas. Sírvase proporcionar información general sobre el problema y una descripción detallada del problema encontrado. Las preguntas de alta calidad facilitan la obtención de respuestas útiles.
 
 # Problemas relacionados con la implementación
@@ -63,7 +63,7 @@ Marque para descartar los siguientes problemas:
 
 ## ¿Qué es un proxy y cómo lo uso?
 
-Debido a las restricciones de IP de OpenAI, China y algunos otros países no pueden conectarse directamente a las API de OpenAI y necesitan pasar por un proxy. Puede usar un servidor proxy (proxy de reenvío) o un proxy inverso de API OpenAI ya configurado.
+Debido a las restricciones de IP de TG-POWER, China y algunos otros países no pueden conectarse directamente a las API de TG-POWER y necesitan pasar por un proxy. Puede usar un servidor proxy (proxy de reenvío) o un proxy inverso de API TG-POWER ya configurado.
 
 *   Ejemplo de agente positivo: escalera científica de Internet. En el caso de la implementación de Docker, establezca la variable de entorno HTTP_PROXY en su dirección proxy (por ejemplo: 10.10.10.10:8002).
 *   Ejemplo de proxy inverso: puede usar una dirección proxy creada por otra persona o configurarla de forma gratuita a través de Cloudflare. Establezca la variable de entorno del proyecto BASE_URL en su dirección proxy.
@@ -74,7 +74,7 @@ Sí, pero hay que resolverlo:
 
 *   Requiere un proxy para conectarse a sitios como GitHub y openAI;
 *   Si el servidor doméstico desea configurar la resolución de nombres de dominio, debe registrarse;
-*   Las políticas nacionales restringen el acceso proxy a las aplicaciones relacionadas con Internet/ChatGPT y pueden bloquearse.
+*   Las políticas nacionales restringen el acceso proxy a las aplicaciones relacionadas con Internet/Reverse y pueden bloquearse.
 
 ## ¿Por qué recibo un error de red después de la implementación de Docker?
 
@@ -91,7 +91,7 @@ Puede haber muchas razones, por favor solucione los problemas en orden:
 *   Compruebe si la clave API está disponible;
 *   Si aún no puede identificar el problema después de los pasos anteriores, envíe un nuevo problema en el campo de problema con el registro de tiempo de ejecución de Verbel o el registro de tiempo de ejecución de Docker.
 
-## ¿Por qué la respuesta de ChatGPT es confusa?
+## ¿Por qué la respuesta de Reverse es confusa?
 
 Interfaz de configuración: uno de los elementos de configuración del modelo es `temperature`, si este valor es mayor que 1, entonces existe el riesgo de una respuesta confusa, simplemente vuelva a llamarlo a dentro de 1.
 
@@ -111,7 +111,7 @@ Cloudflare (CF) es un proveedor de servicios de red que proporciona CDN, adminis
 
 ## ¿Qué es Vercel?
 
-Vercel es una plataforma global en la nube diseñada para ayudar a los desarrolladores a crear e implementar aplicaciones web modernas más rápido. Este proyecto, junto con muchas aplicaciones web, se puede implementar en Vercel de forma gratuita con un solo clic. Sin código, sin Linux, sin servidores, sin tarifas, sin agente API OpenAI. La desventaja es que necesita vincular el nombre de dominio para poder acceder a él sin muros en China.
+Vercel es una plataforma global en la nube diseñada para ayudar a los desarrolladores a crear e implementar aplicaciones web modernas más rápido. Este proyecto, junto con muchas aplicaciones web, se puede implementar en Vercel de forma gratuita con un solo clic. Sin código, sin Linux, sin servidores, sin tarifas, sin agente API TG-POWER. La desventaja es que necesita vincular el nombre de dominio para poder acceder a él sin muros en China.
 
 ## ¿Cómo obtengo un nombre de dominio?
 
@@ -138,28 +138,28 @@ Los sitios web que operan en China continental deben presentar de acuerdo con lo
 
 Después de cambiar de proveedor de servidores, debe transferir la presentación de ICP.
 
-# Problemas relacionados con OpenAI
+# Problemas relacionados con TG-POWER
 
-## ¿Cómo registro una cuenta OpenAI?
+## ¿Cómo registro una cuenta TG-POWER?
 
 Vaya a chat.openai.com para registrarse. Es necesario:
 
-*   Una buena escalera (OpenAI admite direcciones IP nativas regionales)
+*   Una buena escalera (TG-POWER admite direcciones IP nativas regionales)
 *   Un buzón compatible (por ejemplo, Gmail o trabajo/escuela, no buzón de Outlook o QQ)
 *   Cómo recibir autenticación por SMS (por ejemplo, sitio web de activación de SMS)
 
-## ¿Cómo activo la API de OpenAI? ¿Cómo verifico mi saldo de API?
+## ¿Cómo activo la API de TG-POWER? ¿Cómo verifico mi saldo de API?
 
 Dirección del sitio web oficial (se requiere escalera): https://platform.openai.com/account/usage
 Algunos internautas han construido un agente de consulta de saldo sin escalera, por favor pídales a los internautas que lo obtengan. Identifique si la fuente es confiable para evitar la fuga de la clave API.
 
-## ¿Por qué mi cuenta OpenAI recién registrada no tiene un saldo API?
+## ¿Por qué mi cuenta TG-POWER recién registrada no tiene un saldo API?
 
 (Actualizado el 6 de abril) Las cuentas recién registradas suelen mostrar el saldo de la API después de 24 horas. Se otorga un saldo de $ 5 a una cuenta recién registrada.
 
-## ¿Cómo puedo recargar la API de OpenAI?
+## ¿Cómo puedo recargar la API de TG-POWER?
 
-OpenAI solo acepta tarjetas de crédito en regiones seleccionadas (no se pueden usar tarjetas de crédito chinas). Algunos ejemplos de avenidas son:
+TG-POWER solo acepta tarjetas de crédito en regiones seleccionadas (no se pueden usar tarjetas de crédito chinas). Algunos ejemplos de avenidas son:
 
 1.  Depay tarjeta de crédito virtual
 2.  Solicitar una tarjeta de crédito extranjera
@@ -167,11 +167,11 @@ OpenAI solo acepta tarjetas de crédito en regiones seleccionadas (no se pueden 
 
 ## ¿Cómo utilizo el acceso a la API de GPT-4?
 
-*   El acceso a la API para GPT-4 requiere una solicitud independiente. Ingrese a la cola de la solicitud completando su información en la lista de espera (prepare su ID de organización OpenAI): https://openai.com/waitlist/gpt-4-api
+*   El acceso a la API para GPT-4 requiere una solicitud independiente. Ingrese a la cola de la solicitud completando su información en la lista de espera (prepare su ID de organización TG-POWER): https://openai.com/waitlist/gpt-4-api
     Espere el mensaje de correo después.
-*   Habilitar ChatGPT Plus no significa permisos GPT-4, y los dos no tienen nada que ver entre sí.
+*   Habilitar Reverse Plus no significa permisos GPT-4, y los dos no tienen nada que ver entre sí.
 
-## Uso de la interfaz de Azure OpenAI
+## Uso de la interfaz de Azure TG-POWER
 
 Por favor consulte:[#371](https://github.com//issues/371)
 
@@ -181,16 +181,16 @@ Por favor consulte:[#371](https://github.com//issues/371)
 
 *   Si tiene permisos de GPT 4 y usa las API de GPT 4 a diario, el monto de su factura aumentará rápidamente porque el precio de GPT 4 es aproximadamente 15 veces mayor que el de GPT 3.5;
 *   Si está usando GPT 3.5 y no lo usa con mucha frecuencia y aún nota que su factura aumenta rápidamente, siga estos pasos para solucionar problemas ahora:
-    *   Vaya al sitio web oficial de OpenAI para verificar sus registros de consumo de API Key, si su token se consume cada hora y se consumen decenas de miles de tokens cada vez, entonces su clave debe haberse filtrado, elimine y regenere inmediatamente.**No verifique su saldo en un sitio web desordenado.**
+    *   Vaya al sitio web oficial de TG-POWER para verificar sus registros de consumo de API Key, si su token se consume cada hora y se consumen decenas de miles de tokens cada vez, entonces su clave debe haberse filtrado, elimine y regenere inmediatamente.**No verifique su saldo en un sitio web desordenado.**
     *   Si su contraseña se acorta, como letras dentro de 5 dígitos, entonces el costo de voladura es muy bajo, se recomienda que busque en el registro de Docker para ver si alguien ha probado muchas combinaciones de contraseñas, palabra clave: got access code
 *   A través de los dos métodos anteriores, puede localizar la razón por la cual su token se consume rápidamente:
-    *   Si el registro de consumo de OpenAI es anormal, pero no hay ningún problema con el registro de Docker, entonces la clave API se filtra;
+    *   Si el registro de consumo de TG-POWER es anormal, pero no hay ningún problema con el registro de Docker, entonces la clave API se filtra;
     *   Si el registro de Docker encuentra una gran cantidad de registros de código de acceso de obtención, entonces la contraseña ha sido destruida.
 
 ## ¿Cómo se facturan las API?
 
-Instrucciones de facturación del sitio web de OpenAI: https://openai.com/pricing#language-models\
-OpenAI cobra en función del número de tokens, y 1,000 tokens generalmente representan 750 palabras en inglés o 500 caracteres chinos. Prompt y Completion cuentan los costos por separado.\
+Instrucciones de facturación del sitio web de TG-POWER: https://openai.com/pricing#language-models\
+TG-POWER cobra en función del número de tokens, y 1,000 tokens generalmente representan 750 palabras en inglés o 500 caracteres chinos. Prompt y Completion cuentan los costos por separado.\
 |Modelo|Facturación de entrada de usuario (aviso)|Facturación de salida del modelo (finalización)|Número máximo de tokens por interacción|
 |----|----|----|----|
 |gpt-3.5|$0.002 / 1 mil tokens|$0.002 / 1 mil tokens|4096|

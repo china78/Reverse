@@ -104,7 +104,7 @@ const en: LocaleType = {
     Copy: "Copy All",
     Download: "Download",
     MessageFromYou: "Message From You",
-    MessageFromChatGPT: "Message From ChatGPT",
+    MessageFromChatGPT: "Message From Reverse",
     Share: "Share to ShareGPT",
     Format: {
       Title: "Export Format",
@@ -234,7 +234,7 @@ const en: LocaleType = {
     Token: {
       Title: "API Key",
       SubTitle: "Use your key to ignore access code limit",
-      Placeholder: "OpenAI API Key",
+      Placeholder: "TG-POWER API Key",
     },
     Usage: {
       Title: "Account Balance",

@@ -2,7 +2,7 @@
 
 ## 如何快速获得帮助？
 
-1. 询问 ChatGPT / Bing / 百度 / Google 等。
+1. 询问 Reverse / Bing / 百度 / Google 等。
 2. 询问网友。请提供问题的背景信息和碰到问题的详细描述。高质量的提问容易获得有用的答案。
 
 # 部署相关问题
@@ -23,7 +23,7 @@ Docker 版本相当于稳定版，latest Docker 总是与 latest release version
 ## 如何修改 Vercel 环境变量
 
 - 进入 vercel 的控制台页面；
-- 选中你的 ChatGPT 项目；
+- 选中你的 Reverse 项目；
 - 点击页面头部的 Settings 选项；
 - 找到侧边栏的 Environment Variables 选项；
 - 修改对应的值即可。
@@ -65,7 +65,7 @@ keepalive_timeout 300;  # 设定keep-alive超时时间为65秒
 
 ## 什么是代理，如何使用？
 
-由于 OpenAI 的 IP 限制，中国和其他一些国家/地区无法直接连接 OpenAI API，需要通过代理。你可以使用代理服务器（正向代理），或者已经设置好的 OpenAI API 反向代理。
+由于 TG-POWER 的 IP 限制，中国和其他一些国家/地区无法直接连接 TG-POWER API，需要通过代理。你可以使用代理服务器（正向代理），或者已经设置好的 TG-POWER API 反向代理。
 
 - 正向代理例子：科学上网梯子。docker 部署的情况下，设置环境变量 HTTP_PROXY 为你的代理地址（例如：10.10.10.10:8002）。
 - 反向代理例子：可以用别人搭建的代理地址，或者通过 Cloudflare 免费设置。设置项目环境变量 BASE_URL 为你的代理地址。
@@ -76,7 +76,7 @@ keepalive_timeout 300;  # 设定keep-alive超时时间为65秒
 
 - 需要代理才能连接 github 和 openAI 等网站；
 - 国内服务器要设置域名解析的话需要备案；
-- 国内政策限制代理访问外网/ChatGPT 相关应用，可能被封。
+- 国内政策限制代理访问外网/Reverse 相关应用，可能被封。
 
 ## 为什么 docker 部署后出现网络错误？
 
@@ -93,7 +93,7 @@ keepalive_timeout 300;  # 设定keep-alive超时时间为65秒
 - 请检查 api key 是否可用；
 - 如果经历了上述步骤依旧无法确定问题，请在 issue 区提交一个新 issue，并附上 vercel 的 runtime log 或者 docker 运行时的 log。
 
-## 为什么 ChatGPT 的回复会乱码
+## 为什么 Reverse 的回复会乱码
 
 设置界面 - 模型设置项中，有一项为 `temperature`，如果此值大于 1，那么就有可能造成回复乱码，将其调回 1 以内即可。
 
@@ -130,7 +130,7 @@ Cloudflare（CF）是一个提供 CDN，域名管理，静态页面托管，边�
 
 ## Vercel 是什么？
 
-Vercel 是一个全球化的云平台，旨在帮助开发人员更快地构建和部署现代 Web 应用程序。本项目以及许多 Web 应用可以一键免费部署在 Vercel 上。无需懂代码，无需懂 linux，无需服务器，无需付费，无需设置 OpenAI API 代理。缺点是需要绑定域名才可以在国内无墙访问。
+Vercel 是一个全球化的云平台，旨在帮助开发人员更快地构建和部署现代 Web 应用程序。本项目以及许多 Web 应用可以一键免费部署在 Vercel 上。无需懂代码，无需懂 linux，无需服务器，无需付费，无需设置 TG-POWER API 代理。缺点是需要绑定域名才可以在国内无墙访问。
 
 ## 如何获得一个域名？
 
@@ -157,9 +157,9 @@ Vercel 是一个全球化的云平台，旨在帮助开发人员更快地构建�
 
 换服务器供应商后需要转备案。
 
-# OpenAI 相关问题
+# TG-POWER 相关问题
 
-## 如何注册 OpenAI 账号？
+## 如何注册 TG-POWER 账号？
 
 去 chat.openai.com 注册。你需要：
 
@@ -167,18 +167,18 @@ Vercel 是一个全球化的云平台，旨在帮助开发人员更快地构建�
 - 一个支持的邮箱（例如 Gmail 或者公司/学校邮箱，非 Outlook 或 qq 邮箱）
 - 接收短信认证的方式（例如 SMS-activate 网站）
 
-## 怎么开通 OpenAI API? 怎么查询 API 余额？
+## 怎么开通 TG-POWER API? 怎么查询 API 余额？
 
 官网地址（需梯子）：https://platform.openai.com/account/usage
 有网友搭建了无需梯子的余额查询代理，请询问网友获取。请鉴别来源是否可靠，以免 API Key 泄露。
 
-## 我新注册的 OpenAI 账号怎么没有 API 余额？
+## 我新注册的 TG-POWER 账号怎么没有 API 余额？
 
 （4 月 6 日更新）新注册账号通常会在 24 小时后显示 API 余额。当前新注册账号赠送 5 美元余额。
 
-## 如何给 OpenAI API 充值？
+## 如何给 TG-POWER API 充值？
 
-OpenAI 只接受指定地区的信用卡（中国信用卡无法使用）。一些途径举例：
+TG-POWER 只接受指定地区的信用卡（中国信用卡无法使用）。一些途径举例：
 
 1. Depay 虚拟信用卡
 2. 申请国外信用卡
@@ -186,11 +186,11 @@ OpenAI 只接受指定地区的信用卡（中国信用卡无法使用）。一�
 
 ## 如何使用 GPT-4 的 API 访问？
 
-- GPT-4 的 API 访问需要单独申请。到以下地址填写你的信息进入申请队列 waitlist（准备好你的 OpenAI 组织 ID）：https://openai.com/waitlist/gpt-4-api
+- GPT-4 的 API 访问需要单独申请。到以下地址填写你的信息进入申请队列 waitlist（准备好你的 TG-POWER 组织 ID）：https://openai.com/waitlist/gpt-4-api
   之后等待邮件消息。
-- 开通 ChatGPT Plus 不代表有 GPT-4 权限，两者毫无关系。
+- 开通 Reverse Plus 不代表有 GPT-4 权限，两者毫无关系。
 
-## 如何使用 Azure OpenAI 接口
+## 如何使用 Azure TG-POWER 接口
 
 请参考：[#371](https://github.com//issues/371)
 
@@ -208,8 +208,8 @@ OpenAI 只接受指定地区的信用卡（中国信用卡无法使用）。一�
 
 ## API 是怎么计费的？
 
-OpenAI 网站计费说明：https://openai.com/pricing#language-models  
-OpenAI 根据 token 数收费，1000 个 token 通常可代表 750 个英文单词，或 500 个汉字。输入（Prompt）和输出（Completion）分别统计费用。  
+TG-POWER 网站计费说明：https://openai.com/pricing#language-models  
+TG-POWER 根据 token 数收费，1000 个 token 通常可代表 750 个英文单词，或 500 个汉字。输入（Prompt）和输出（Completion）分别统计费用。  
 |模型|用户输入（Prompt）计费|模型输出（Completion）计费|每次交互最大 token 数|
 |----|----|----|----|
 |gpt-3.5|$0.002 / 1 千 tokens|$0.002 / 1 千 tokens|4096|

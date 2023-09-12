@@ -24,7 +24,7 @@ async function handle(
   req: NextRequest,
   { params }: { params: { path: string[] } },
 ) {
-  console.log("[OpenAI Route] params ", params);
+  console.log("[TG-POWER Route] params ", params);
 
   if (req.method === "OPTIONS") {
     return NextResponse.json({ body: "OK" }, { status: 200 });
@@ -33,7 +33,7 @@ async function handle(
   const subpath = params.path.join("/");
 
   if (!ALLOWD_PATH.has(subpath)) {
-    console.log("[OpenAI Route] forbidden path ", subpath);
+    console.log("[TG-POWER Route] forbidden path ", subpath);
     return NextResponse.json(
       {
         error: true,
@@ -66,7 +66,7 @@ async function handle(
 
     return response;
   } catch (e) {
-    console.error("[OpenAI] ", e);
+    console.error("[TG-POWER] ", e);
     return NextResponse.json(prettyObject(e));
   }
 }

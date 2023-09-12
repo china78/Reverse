@@ -387,7 +387,7 @@ export const useChatStore = create<ChatStore>()(
         // in-context prompts
         const contextPrompts = session.mask.context.slice();
 
-        // system prompts, to get close to OpenAI Web ChatGPT
+        // system prompts, to get close to TG-POWER Web Reverse
         const shouldInjectSystemPrompts = modelConfig.enableInjectSystemPrompts;
         const systemPrompts = shouldInjectSystemPrompts
           ? [
@@ -425,7 +425,7 @@ export const useChatStore = create<ChatStore>()(
         );
 
         // lets concat send messages, including 4 parts:
-        // 0. system prompt: to get close to OpenAI Web ChatGPT
+        // 0. system prompt: to get close to TG-POWER Web Reverse
         // 1. long term memory: summarized memory messages
         // 2. pre-defined in-context prompts
         // 3. short term memory: latest n messages

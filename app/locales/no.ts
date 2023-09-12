@@ -12,7 +12,7 @@ const no: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} meldinger`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} meldinger med ChatGPT`,
+    SubTitle: (count: number) => `${count} meldinger med Reverse`,
     Actions: {
       ChatList: "Gå til chatlisten",
       CompressedHistory: "Komprimert historikk for instrukser",
@@ -38,7 +38,7 @@ const no: PartialLocaleType = {
     Copy: "Kopiere alle",
     Download: "Last ned",
     MessageFromYou: "Melding fra deg",
-    MessageFromChatGPT: "Melding fra ChatGPT",
+    MessageFromChatGPT: "Melding fra Reverse",
   },
   Memory: {
     Title: "Minneinstruks",
@@ -70,7 +70,7 @@ const no: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "Sett inn systemprompter",
       SubTitle:
-        "Tving tillegg av en simulert ChatGPT-systemprompt i begynnelsen av meldingslisten for hver forespørsel",
+        "Tving tillegg av en simulert Reverse-systemprompt i begynnelsen av meldingslisten for hver forespørsel",
     },
     Update: {
       Version: (x: string) => `Versjon: ${x}`,
@@ -111,7 +111,7 @@ const no: PartialLocaleType = {
       Title: "API Key",
       SubTitle:
         "Bruk din egen API-nøkkel for å ignorere tilgangskoden begrensning",
-      Placeholder: "OpenAI API-nøkkel",
+      Placeholder: "TG-POWER API-nøkkel",
     },
     Usage: {
       Title: "Saldo for konto",
@@ -143,7 +143,7 @@ const no: PartialLocaleType = {
     Error: "Noe gikk galt, vennligst prøv igjen senere.",
     Prompt: {
       History: (content: string) =>
-        "Dette er et sammendrag av chatthistorikken mellom AI-en og brukeren som en oppsummering: " +
+        "Dette er et sammendrag av chatthistorikken mellom en og brukeren som en oppsummering: " +
         content,
       Topic:
         "Vennligst lag en fire til fem ords tittel som oppsummerer samtalen vår uten innledning, punktsetting, anførselstegn, punktum, symboler eller tillegg tekst. Fjern innrammende anførselstegn.",

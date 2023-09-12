@@ -15,18 +15,18 @@ jobs:
     
     - name: Set up SSH directory
       run: |
-        mkdir -p $HOME/.ssh/zhongbang
-        chmod 700 $HOME/.ssh/zhongbang
+        mkdir -p /.ssh/zhongbang
+        chmod 700 /.ssh/zhongbang
     
     - name: Write APICLIENT_CERT to file
       env:
         APICLIENT_CERT: ${{ secrets.APICLIENT_CERT }}
-      run: echo "$APICLIENT_CERT" > $HOME/.ssh/zhongbang/apiclient_cert.pem
+      run: echo "$APICLIENT_CERT" > /.ssh/zhongbang/apiclient_cert.pem
     
     - name: Write APICLIENT_KEY to file
       env:
         APICLIENT_KEY: ${{ secrets.APICLIENT_KEY }}
-      run: echo "$APICLIENT_KEY" > $HOME/.ssh/zhongbang/apiclient_key.pem
+      run: echo "$APICLIENT_KEY" > /.ssh/zhongbang/apiclient_key.pem
     
     - name: Build the Docker image
       working-directory: .

@@ -92,6 +92,7 @@ export function Pay() {
     pollingInterval = setInterval(queryOrderResult, 2000); // 每2秒执行一次查询订单结果
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function stopPollingOrderResult() {
     if (pollingInterval) {
       clearInterval(pollingInterval);
@@ -188,7 +189,7 @@ export function Pay() {
     return () => {
       stopPollingOrderResult();
     };
-  }, []);
+  }, [stopPollingOrderResult]);
 
   return (
     <div className={styles.pay}>

@@ -14,5 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Create empty files
+      run: |
+        touch /Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem
+        touch /Users/tianganggang/.ssh/zhongbang/apiclient_key.pem
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag chat:$(date +%s)

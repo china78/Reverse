@@ -18,7 +18,7 @@ const payOptions: PayOptions = {
   privateKey: "",
 };
 
-// 开发环境下直接引用本地文件路径
+// 开发环境下直接引用本地文件路径 /app/.ssh/apiclient_cert.pem
 payOptions.publicKey = fs.readFileSync(
   "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
 );

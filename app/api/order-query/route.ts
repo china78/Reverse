@@ -18,27 +18,31 @@ const payOptions: PayOptions = {
   privateKey: "",
 };
 
-if (process.env.NODE_ENV === "production") {
-  try {
-    // 生产环境下加载密钥文件路径
-    payOptions.publicKey = fs.readFileSync(
-      "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
-    );
-    payOptions.privateKey = fs.readFileSync(
-      "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
-    );
-  } catch (error) {
-    console.log(error);
-  }
-} else {
-  // 开发环境下直接引用本地文件路径
-  payOptions.publicKey = fs.readFileSync(
-    "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
-  );
-  payOptions.privateKey = fs.readFileSync(
-    "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
-  );
-}
+// 开发环境下直接引用本地文件路径
+payOptions.publicKey = fs.readFileSync(
+  "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
+);
+payOptions.privateKey = fs.readFileSync(
+  "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
+);
+
+// if (process.env.NODE_ENV === "production") {
+//   // 生产环境下加载密钥文件路径
+//   payOptions.publicKey = fs.readFileSync(
+//     "/.ssh/zhongbang/apiclient_cert.pem",
+//   );
+//   payOptions.privateKey = fs.readFileSync(
+//     "/.ssh/zhongbang/apiclient_key.pem",
+//   );
+// } else {
+//   // 开发环境下直接引用本地文件路径
+//   payOptions.publicKey = fs.readFileSync(
+//     "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
+//   );
+//   payOptions.privateKey = fs.readFileSync(
+//     "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
+//   );
+// }
 
 const pay = new WxPay(payOptions as Ipay);
 

@@ -14,15 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Create empty files
-      run: |
-        mkdir -p $HOME/.ssh/zhongbang
-        touch $HOME/.ssh/zhongbang/apiclient_cert.pem
-        touch $HOME/.ssh/zhongbang/apiclient_key.pem
-    - name: Copy files to host
-      run: |
-        mkdir -p ${{ github.workspace }}/.ssh/zhongbang
-        cp $HOME/.ssh/zhongbang/apiclient_cert.pem ${{ github.workspace }}/.ssh/zhongbang/apiclient_cert.pem
-        cp $HOME/.ssh/zhongbang/apiclient_key.pem ${{ github.workspace }}/.ssh/zhongbang/apiclient_key.pem
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag chat:$(date +%s)
+      

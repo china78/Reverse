@@ -12,6 +12,11 @@ RUN set -eux; \
     sed -i 's/npmmirror.com/npmjs.org/g' yarn.lock; \
     yarn install;
 
+# Create empty files
+RUN mkdir -p /Users/tianganggang/.ssh/zhongbang
+RUN touch /Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem
+RUN touch /Users/tianganggang/.ssh/zhongbang/apiclient_key.pem
+
 FROM base AS builder
 
 RUN apk update && apk add --no-cache git

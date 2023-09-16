@@ -1,5 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 import { CASDOOR } from "@/app/constant";
+import { SDK } from "casdoor-nodejs-sdk";
 
 // 你的 casdoor 公钥证书，在 casdoor 面板中可以找到
 export async function POST(req: NextRequest) {
@@ -17,6 +18,8 @@ export async function POST(req: NextRequest) {
   } else {
     return;
   }
+  const sdk = new SDK(authCfg);
+
   const searchParams = req.nextUrl.searchParams;
 
   const code = searchParams.get("code");

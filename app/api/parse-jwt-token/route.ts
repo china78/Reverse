@@ -1,22 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readFileSync } from "fs";
 import { homedir } from "os";
-import { join } from "path";
 import { CASDOOR } from "@/app/constant";
 import { SDK } from "casdoor-nodejs-sdk";
 
 export async function POST(req: NextRequest) {
   const { token } = await req.json();
-  const cert = readFileSync(join(homedir(), ".ssh", "casdoor.pub"), "utf-8");
 
   const authCfg = {
     endpoint: CASDOOR.endpoint,
     clientId: CASDOOR.clientId,
     clientSecret: CASDOOR.clientSecret,
-    certificate: cert,
+    certificate: "",
     orgName: CASDOOR.organizationName,
     appName: CASDOOR.appName,
   };
+
+  if (process.env.CASDOORCERT) {
+    authCfg.certificate = process.env.CASDOORCERT;
+  } else {
+    return;
+  }
 
   const sdk = new SDK(authCfg);
 

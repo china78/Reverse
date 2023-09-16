@@ -1,25 +1,22 @@
 import { NextResponse, NextRequest } from "next/server";
-import { homedir } from "os";
-import { readFileSync } from "fs";
-import { join } from "path";
-import { SDK } from "casdoor-nodejs-sdk";
 import { CASDOOR } from "@/app/constant";
 
 // 你的 casdoor 公钥证书，在 casdoor 面板中可以找到
-const cert = readFileSync(join(homedir(), ".ssh", "casdoor.pub"), "utf-8");
-
-const authCfg = {
-  endpoint: CASDOOR.endpoint,
-  clientId: CASDOOR.clientId,
-  clientSecret: CASDOOR.clientSecret,
-  certificate: cert,
-  orgName: CASDOOR.organizationName,
-  appName: CASDOOR.appName,
-};
-
-const sdk = new SDK(authCfg);
-
 export async function POST(req: NextRequest) {
+  const authCfg = {
+    endpoint: CASDOOR.endpoint,
+    clientId: CASDOOR.clientId,
+    clientSecret: CASDOOR.clientSecret,
+    certificate: "",
+    orgName: CASDOOR.organizationName,
+    appName: CASDOOR.appName,
+  };
+
+  if (process.env.CASDOORCERT) {
+    authCfg.certificate = process.env.CASDOORCERT;
+  } else {
+    return;
+  }
   const searchParams = req.nextUrl.searchParams;
 
   const code = searchParams.get("code");

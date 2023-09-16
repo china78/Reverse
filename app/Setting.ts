@@ -53,15 +53,6 @@ export const goToLink = (link: string) => {
   window.location.href = link;
 };
 
-export const getUsersInfo = () => {
-  return fetch(`${serverUrl}/api/users-info`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    },
-  }).then((res) => res.json());
-};
-
 export const logout = () => {
   localStorage.removeItem("jwt");
 };

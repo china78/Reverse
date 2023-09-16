@@ -1,21 +1,28 @@
 import { NextResponse, NextRequest } from "next/server";
 import WxPay from "wechatpay-node-v3";
-import fs from "fs";
 import qrcode from "qrcode";
-
-const pay = new WxPay({
-  appid: "wxa29f1b154a0856e3",
-  mchid: "1651683598",
-  publicKey: fs.readFileSync(
-    "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
-  ), // 公钥
-  privateKey: fs.readFileSync(
-    "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
-  ), // 秘钥
-});
+import { Ipay } from "wechatpay-node-v3/dist/lib/interface";
+import { PayOptions } from "../order-query/route";
 
 export async function POST(req: NextRequest) {
   const { params } = await req.json();
+
+  const payOptions: PayOptions = {
+    appid: "wxa29f1b154a0856e3",
+    mchid: "1651683598",
+    publicKey: "",
+    privateKey: "",
+  };
+
+  if (process.env.APICLIENTCERT && process.env.APICLIENTKEY) {
+    payOptions.publicKey = process.env.APICLIENTCERT;
+    payOptions.privateKey = process.env.APICLIENTKEY;
+  } else {
+    return;
+  }
+
+  const pay = new WxPay(payOptions as Ipay);
+
   try {
     const result = await pay.transactions_native(params);
 

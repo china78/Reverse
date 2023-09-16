@@ -1,39 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
 import WxPay from "wechatpay-node-v3";
-import fs from "fs";
 import prisma from "@/app/db/prisma";
 import { Ipay } from "wechatpay-node-v3/dist/lib/interface";
 
-type PayOptions = {
+export type PayOptions = {
   appid: string;
   mchid: string;
   publicKey: any;
   privateKey: any;
 };
-
-const payOptions: PayOptions = {
-  appid: "wxa29f1b154a0856e3",
-  mchid: "1651683598",
-  publicKey: "",
-  privateKey: "",
-};
-
-// if (process.env.APICLIENTCERT && process.env.APICLIENTKEY) {
-//   payOptions.publicKey = process.env.APICLIENTCERT;
-//   payOptions.privateKey = process.env.APICLIENTKEY;
-// } else {
-
-// }
-
-// 开发环境下直接引用本地文件路径 /app/.ssh/apiclient_cert.pem
-// payOptions.publicKey = fs.readFileSync(
-//   "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
-// );
-// payOptions.privateKey = fs.readFileSync(
-//   "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
-// );
-
-// const pay = new WxPay(payOptions as Ipay);
 
 type Payed = {
   amount: {
@@ -81,6 +56,13 @@ export async function POST(req: NextRequest) {
     amount,
     subscriptionType,
   } = await req.json();
+
+  const payOptions: PayOptions = {
+    appid: "wxa29f1b154a0856e3",
+    mchid: "1651683598",
+    publicKey: "",
+    privateKey: "",
+  };
 
   if (process.env.APICLIENTCERT && process.env.APICLIENTKEY) {
     payOptions.publicKey = process.env.APICLIENTCERT;

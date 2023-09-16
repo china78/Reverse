@@ -18,33 +18,22 @@ const payOptions: PayOptions = {
   privateKey: "",
 };
 
-// 开发环境下直接引用本地文件路径 /app/.ssh/apiclient_cert.pem
-payOptions.publicKey = fs.readFileSync(
-  "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
-);
-payOptions.privateKey = fs.readFileSync(
-  "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
-);
-
-// if (process.env.NODE_ENV === "production") {
-//   // 生产环境下加载密钥文件路径
-//   payOptions.publicKey = fs.readFileSync(
-//     "/.ssh/zhongbang/apiclient_cert.pem",
-//   );
-//   payOptions.privateKey = fs.readFileSync(
-//     "/.ssh/zhongbang/apiclient_key.pem",
-//   );
+// if (process.env.APICLIENTCERT && process.env.APICLIENTKEY) {
+//   payOptions.publicKey = process.env.APICLIENTCERT;
+//   payOptions.privateKey = process.env.APICLIENTKEY;
 // } else {
-//   // 开发环境下直接引用本地文件路径
-//   payOptions.publicKey = fs.readFileSync(
-//     "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
-//   );
-//   payOptions.privateKey = fs.readFileSync(
-//     "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
-//   );
+
 // }
 
-const pay = new WxPay(payOptions as Ipay);
+// 开发环境下直接引用本地文件路径 /app/.ssh/apiclient_cert.pem
+// payOptions.publicKey = fs.readFileSync(
+//   "/Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem",
+// );
+// payOptions.privateKey = fs.readFileSync(
+//   "/Users/tianganggang/.ssh/zhongbang/apiclient_key.pem",
+// );
+
+// const pay = new WxPay(payOptions as Ipay);
 
 type Payed = {
   amount: {
@@ -92,6 +81,14 @@ export async function POST(req: NextRequest) {
     amount,
     subscriptionType,
   } = await req.json();
+
+  if (process.env.APICLIENTCERT && process.env.APICLIENTKEY) {
+    payOptions.publicKey = process.env.APICLIENTCERT;
+    payOptions.privateKey = process.env.APICLIENTKEY;
+  } else {
+    return;
+  }
+  const pay = new WxPay(payOptions as Ipay);
 
   try {
     const result: Partial<Payed> = await pay.query({ out_trade_no });

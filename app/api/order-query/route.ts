@@ -103,6 +103,50 @@ export async function POST(req: NextRequest) {
       });
 
       if (createdOrder) {
+        // 存会员到期时间
+        // 数据存储成功，计算会员到期时间
+        let memberExpirationDate: string;
+
+        // 将交易成功时间转换为 Date 对象
+        const successTime = new Date(result.success_time!);
+
+        // 根据订阅类型计算会员到期时间
+        if (subscriptionType === "包年") {
+          // 添加一年的时间
+          successTime.setFullYear(successTime.getFullYear() + 1);
+        } else if (subscriptionType === "包季") {
+          // 添加三个月的时间
+          successTime.setMonth(successTime.getMonth() + 3);
+        } else if (subscriptionType === "包月") {
+          // 添加一个月的时间
+          successTime.setMonth(successTime.getMonth() + 1);
+        } else if (subscriptionType === "三天") {
+          // 添加三天的时间
+          successTime.setDate(successTime.getDate() + 3);
+        } else if (subscriptionType === "测试") {
+          // 添加一分钟的时间（用于测试）
+          successTime.setMinutes(successTime.getMinutes() + 1);
+        }
+
+        // 将会员到期时间格式化为字符串
+        memberExpirationDate = successTime.toISOString();
+
+        // 更新用户的会员状态和会员到期时间
+        try {
+          const updatedUser = await prisma.user.update({
+            where: { id: userId },
+            data: {
+              isMember: true,
+              memberExpirationDate,
+            },
+          });
+          NextResponse.json({ data: updatedUser }, { status: 200 });
+        } catch (error) {
+          NextResponse.json(
+            { error: "Internal server error" },
+            { status: 500 },
+          );
+        }
         // 数据存储成功，返回成功提示给前端
         return NextResponse.json(
           { success: true, message: "订单数据存储成功" },

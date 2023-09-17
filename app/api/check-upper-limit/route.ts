@@ -8,14 +8,19 @@ export async function POST(req: NextRequest) {
     // 查询用户的使用次数和会员状态
     const user = await prisma.user.findUnique({
       where: { id },
-      select: { usages: true, isMember: true },
+      select: { usages: true, isMember: true, memberExpirationDate: true },
     });
 
     if (user) {
-      if (user.isMember) {
-        // 用户是会员，允许继续聊天
+      // 检查会员到期时间是否已过期
+      const currentDateTime = new Date();
+      const expirationDateTime = new Date(user.memberExpirationDate!);
+      const effectiveDate = currentDateTime < expirationDateTime;
+
+      if (user.isMember && effectiveDate) {
+        // 用户是会员，且没有到期，允许继续聊天
         return NextResponse.json({ upperLimit: false }, { status: 200 });
-      } else if (user.usages < 30) {
+      } else if (user.usages < 10) {
         // 用户不是会员但使用次数未达到20次，可以继续
         return NextResponse.json({ upperLimit: false }, { status: 200 });
       } else {

@@ -21,10 +21,12 @@ model User {
   createdAt      String?       @db.VarChar(100)
   usages         Int           @default(0)
   isMember       Boolean       @default(false)
+  memberExpirationDate String?  @db.VarChar(100)
   subscriptionId String?
   subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
   orders         Order[] // 一个用户可以有很多订单
 }
+// 最新订单的截止时间，就是会员到期时间
 
 model Subscription {
   id          String   @id
@@ -39,7 +41,7 @@ model Order {
   orderNumber       String        @unique
   userId            String        // 订单肯定是某用户创建的
   subscriptionId    String           
-  createdAt         String
+  createdAt         String        // 订单创建时间
   amount            Float         // 订单金额
   subscriptionType  String       // 订阅类型
   transaction_id    String       // 交易id

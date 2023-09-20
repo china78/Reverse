@@ -161,7 +161,7 @@ export const PRINCES: PRINCES[] = [
 
 export const CASDOOR = {
   // endpoint: "http://localhost:7001", // 开发
-  endpoint: "http://www.helpreverse.click:8000", // 生产
+  endpoint: "casdoor.helpreverse.click", // 生产
   clientId: "c6b3a0adcc44d5d10856",
   appName: "gpt_test",
   organizationName: "built-in",

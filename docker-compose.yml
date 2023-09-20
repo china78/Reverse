@@ -1,30 +1,31 @@
 version: "3"
 services:
   app:
-    image: tggdocker/chat-github
+    image: tggdocker/chat-github:latest
     ports:
-      - 8081:3000
+      - 80:3000
     environment:
-      - DATABASE_URL=mysql://root:12345678@db:3306/chat_app
-      - OPENAI_API_KEY=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
-      - CODE=goodboy
+      - DATABASE_URL=${DATABASE_URL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     depends_on:
       - db
-    restart: on-failure
+    restart: always
   db:
     image: mysql:latest
-    restart: on-failure
+    ports:
+      - 3306:3306
+    restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     environment:
-      - MYSQL_ROOT_PASSWORD=12345678
-      - MYSQL_DATABASE=chat_app
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
     volumes:
       - ./mysql/data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     expose:
       - 3306
   casdoor:
-    image: casbin/casdoor
+    image: casbin/casdoor:latest
     ports:
       - 8000:8000
     environment:
@@ -34,3 +35,4 @@ services:
     restart: on-failure
     volumes:
       - ./conf:/conf/
+

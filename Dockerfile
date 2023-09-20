@@ -21,9 +21,7 @@ ENV OPENAI_API_KEY=""
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# RUN mkdir -p /Users/tianganggang/.ssh/zhongbang;\
-#     touch /Users/tianganggang/.ssh/zhongbang/apiclient_cert.pem;\
-#     touch /Users/tianganggang/.ssh/zhongbang/apiclient_key.pem;
+
 ENV DATABASE_URL=""
 RUN npx prisma generate; \
     yarn build;

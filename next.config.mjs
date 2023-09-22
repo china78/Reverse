@@ -1,10 +1,27 @@
 import webpack from "webpack";
+import path from 'path';
+import fs from 'fs';
 
 const mode = process.env.BUILD_MODE ?? "standalone";
 console.log("[Next] build mode", mode);
 
 const disableChunk = !!process.env.DISABLE_CHUNK || mode === "export";
 console.log("[Next] build with chunk: ", !disableChunk);
+
+const __filename = new URL(import.meta.url).pathname;
+const __dirname = path.dirname(__filename);
+
+const generateVersionFile = () => {
+  const packageJsonContent = fs.readFileSync('package.json', 'utf8');
+  const packageJson = JSON.parse(packageJsonContent);
+  const _version = packageJson.version;
+
+  const version = _version || "1.0.0";
+  const versionFilePath = path.resolve(__dirname, "public/version.json");
+  const versionFileContent = JSON.stringify({ version });
+
+  fs.writeFileSync(versionFilePath, versionFileContent);
+};
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -90,5 +107,6 @@ if (mode !== "export") {
     };
   };
 }
-
+// 在构建过程中生成版本号文件
+generateVersionFile();
 export default nextConfig;

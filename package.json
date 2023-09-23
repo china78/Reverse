@@ -1,6 +1,6 @@
 {
   "name": "reverse",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": true,
   "packageManager": "yarn@1.22.19",
   "scripts": {

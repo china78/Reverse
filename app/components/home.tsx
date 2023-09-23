@@ -189,28 +189,6 @@ export function Home() {
   useLoadData();
 
   useEffect(() => {
-    const fetchVersion = async () => {
-      try {
-        const response = await fetch("/version.json");
-        const { version } = await response.json();
-        const localStorageVersion = localStorage.getItem("version");
-
-        if (version !== localStorageVersion) {
-          const timestamp = Date.now();
-          const queryParams = `?version=${version}&timestamp=${timestamp}`;
-
-          window.location.search = queryParams;
-          localStorage.setItem("version", version);
-        }
-      } catch (error) {
-        console.error("Error fetching version:", error);
-      }
-    };
-
-    fetchVersion();
-  }, []);
-
-  useEffect(() => {
     console.log("[Config] got config from build time", getClientConfig());
     useAccessStore.getState().fetch();
   }, []);

@@ -37,6 +37,8 @@ export default function RootLayout({
           http-equiv="Cache-Control"
           content="no-cache, no-store, must-revalidate"
         />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
         {/* <Script src="/setUrlQuery.js"></Script> */}

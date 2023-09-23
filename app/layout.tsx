@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable @next/next/no-page-custom-font */
 import "./styles/globals.scss";
 import "./styles/markdown.scss";
@@ -35,7 +34,7 @@ export default function RootLayout({
         <meta name="config" content={JSON.stringify(getClientConfig())} />
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
-        <script src="/setUrlQuery.js"></script>
+        <script src="/setUrlQuery.js" async></script>
       </head>
       <body>{children}</body>
     </html>

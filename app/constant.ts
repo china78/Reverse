@@ -165,8 +165,8 @@ console.log(
 );
 console.log("----- process.env------: ", process.env);
 export const CASDOOR = {
-  endpoint: "http://localhost:7001", // 开发
-  // endpoint: "https://casdoor.helpreverse.click", // 生产
+  // endpoint: "http://localhost:7001", // 开发
+  endpoint: "https://casdoor.helpreverse.click", // 生产
   clientId: process.env.CASDOOR_CLIENT_ID || "c6b3a0adcc44d5d10856",
   appName: "gpt_test",
   organizationName: "built-in",

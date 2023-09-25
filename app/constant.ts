@@ -161,12 +161,12 @@ export const PRINCES: PRINCES[] = [
 export const CASDOOR = {
   // endpoint: "http://localhost:7001", // 开发
   endpoint: "https://casdoor.helpreverse.click", // 生产
-  clientId: process.env.NEXT_PUBLIC_CASDOOR_CLIENT_ID || "c6b3a0adcc44d5d10856",
+  clientId: process.env.CASDOOR_CLIENT_ID || "c6b3a0adcc44d5d10856",
   appName: "HelpReverse",
   organizationName: "built-in",
   redirectPath: "/#/oauth",
   clientSecret:
-    process.env.NEXT_PUBLIC_CASDOOR_CLIENT_SECRET ||
+    process.env.CASDOOR_CLIENT_SECRET ||
     "0d23837890ad2013425e07ce77534e001fe15e09",
   signinPath: "/api/signin",
 };

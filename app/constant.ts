@@ -158,23 +158,15 @@ export const PRINCES: PRINCES[] = [
   //   subscriptionType: "测试",
   // },
 ];
-
-console.log(
-  "----- process.env.CASDOOR_CLIENT_ID------: ",
-  process.env.CASDOOR_CLIENT_ID,
-);
-console.log("----- process.env------: ", process.env);
 export const CASDOOR = {
   // endpoint: "http://localhost:7001", // 开发
   endpoint: "https://casdoor.helpreverse.click", // 生产
-  clientId: process.env.CASDOOR_CLIENT_ID || "c6b3a0adcc44d5d10856",
-  appName: "gpt_test",
+  clientId: process.env.NEXT_PUBLIC_CASDOOR_CLIENT_ID || "c6b3a0adcc44d5d10856",
+  appName: "HelpReverse",
   organizationName: "built-in",
   redirectPath: "/#/oauth",
-  // NOTE: 不要把真实环境的 clientSecret 放在这里
-  // 正式环境的 clientSecret 应该放在环境变量中
   clientSecret:
-    process.env.CASDOOR_CLIENT_SECRET ||
+    process.env.NEXT_PUBLIC_CASDOOR_CLIENT_SECRET ||
     "0d23837890ad2013425e07ce77534e001fe15e09",
   signinPath: "/api/signin",
 };

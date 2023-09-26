@@ -1,6 +1,7 @@
 import webpack from "webpack";
 import path from 'path';
 import fs from 'fs';
+import { readFileSync } from 'fs';
 
 const mode = process.env.BUILD_MODE ?? "standalone";
 console.log("[Next] build mode", mode);
@@ -10,6 +11,15 @@ console.log("[Next] build with chunk: ", !disableChunk);
 
 const __filename = new URL(import.meta.url).pathname;
 const __dirname = path.dirname(__filename);
+
+const generateVersionFile =()=>{
+  const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'));
+  const version = packageJson.version;
+  const versionFilePath = path.resolve(__dirname, "public/version.json");
+  const versionFileContent = JSON.stringify({ version });
+
+  fs.writeFileSync(versionFilePath, versionFileContent);
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -95,4 +105,5 @@ if (mode !== "export") {
     };
   };
 }
+generateVersionFile();
 export default nextConfig;

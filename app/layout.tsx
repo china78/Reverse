@@ -4,7 +4,7 @@ import "./styles/markdown.scss";
 import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 import { type Metadata } from "next";
-// import Script from "next/script";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Reverse",
@@ -35,6 +35,7 @@ export default function RootLayout({
         <meta name="config" content={JSON.stringify(getClientConfig())} />
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
+        <Script src="/setUrlQuery.js"></Script>
       </head>
       <body>{children}</body>
     </html>

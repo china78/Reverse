@@ -17,20 +17,12 @@ export async function POST(req: NextRequest) {
     appName: CASDOOR.appName,
   };
 
-  const casdoorCert = fs.readFileSync("/Users/tianganggang/.ssh/casdoor.pub");
-  console.log("--- casdoorCert1 ---: ", casdoorCert);
-  console.log("--- casdoorCert2---: ", casdoorCert.toString());
-  // console.log('--- process.env.CASDOORCERT --- :', Buffer.from(process.env.CASDOORCERT!));
-  // authCfg.certificate = casdoorCert
-
   if (process.env.CASDOORCERT) {
     authCfg.certificate = Buffer.from(process.env.CASDOORCERT);
   } else {
     return;
   }
 
-  console.log("--- casdoorCert1 ---: ", authCfg.certificate);
-  console.log("--- casdoorCert2 ---: ", authCfg.certificate.toString());
   const sdk = new SDK(authCfg);
 
   try {

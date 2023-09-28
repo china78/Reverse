@@ -18,6 +18,8 @@ export async function POST(req: NextRequest) {
   } else {
     return;
   }
+  console.log("-----------   authCfg: ----------", authCfg);
+
   const sdk = new SDK(authCfg);
 
   const searchParams = req.nextUrl.searchParams;
@@ -32,8 +34,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  console.log("-----------   code: ----------", code);
+
   try {
     const result = await sdk.getAuthToken(code);
+    console.log("-----------   result: ----------", result);
     return NextResponse.json({ data: result, status: "ok" }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error, status: "error" }, { status: 500 });

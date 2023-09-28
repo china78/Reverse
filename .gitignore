@@ -47,3 +47,5 @@ dev
 
 # db
 mysql
+# Sentry Auth Token
+.sentryclirc

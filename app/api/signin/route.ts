@@ -6,6 +6,16 @@ import { SDK } from "casdoor-nodejs-sdk";
 export async function POST(req: NextRequest) {
   console.log("--------- /api/signin/ - req -------: ", req);
   console.log("--------- /api/signin/ - req.headers -------: ", req.headers);
+  console.log("------------- process.env --------: ", process.env);
+  console.log(
+    "------------- process.env.CASDOORCERT --------: ",
+    process.env.CASDOORCERT,
+  );
+  const a = Buffer.from(process.env.CASDOORCERT as any);
+  console.log(
+    "------------- Buffer.from(process.env.CASDOORCERT) --------: ",
+    a,
+  );
   const authCfg: any = {
     endpoint: CASDOOR.endpoint,
     clientId: CASDOOR.clientId,

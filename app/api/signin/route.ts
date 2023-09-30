@@ -4,6 +4,7 @@ import { SDK } from "casdoor-nodejs-sdk";
 
 // 你的 casdoor 公钥证书，在 casdoor 面板中可以找到
 export async function POST(req: NextRequest) {
+  console.log("--------- /api/signin/ - req -------: ", req);
   const authCfg: any = {
     endpoint: CASDOOR.endpoint,
     clientId: CASDOOR.clientId,
@@ -19,12 +20,18 @@ export async function POST(req: NextRequest) {
     return;
   }
 
+  console.log("--------- authCfg -------: ", authCfg);
   const sdk = new SDK(authCfg);
 
   const searchParams = req.nextUrl.searchParams;
 
+  console.log("--------- searchParams -------: ", searchParams);
+
   const code = searchParams.get("code");
   const state = searchParams.get("state");
+
+  console.log("--------- code -------: ", code);
+  console.log("--------- state -------: ", state);
 
   if (code === null || state === null) {
     return NextResponse.json(
@@ -35,6 +42,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const result = await sdk.getAuthToken(code);
+    console.log("--------- result -------: ", result);
     return NextResponse.json({ data: result, status: "ok" }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error, status: "error" }, { status: 500 });

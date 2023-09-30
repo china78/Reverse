@@ -28,7 +28,10 @@ export async function POST(req: NextRequest) {
   if (process.env.CASDOORCERT) {
     authCfg.certificate = Buffer.from(process.env.CASDOORCERT); // Buffer.from(process.env.CASDOORCERT)
   } else {
-    return;
+    return NextResponse.json(
+      { error: "未获取到CASDOORCERT", status: "error" },
+      { status: 500 },
+    );
   }
 
   console.log("--------- authCfg -------: ", authCfg);

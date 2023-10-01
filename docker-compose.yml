@@ -4,6 +4,8 @@ services:
     image: tggdocker/chat-github:latest
     ports:
       - 3000:3000
+    env_file:
+      - .env.local
     environment:
       - DATABASE_URL=${DATABASE_URL}
       - OPENAI_API_KEY=${OPENAI_API_KEY}

@@ -158,13 +158,14 @@ export const PRINCES: PRINCES[] = [
   //   subscriptionType: "测试",
   // },
 ];
+
 export const CASDOOR = {
   // endpoint: "http://localhost:7001", // 开发
   endpoint: "https://casdoor.helpreverse.click", // 生产
   // clientId: "c6b3a0adcc44d5d10856", // 开发
   clientId: "778e2be9e68493f532b4", // 生产
   appName: "HelpReverse",
-  organizationName: "built-in",
+  organizationName: "reverse",
   redirectPath: "/#/oauth",
   // clientSecret: "0d23837890ad2013425e07ce77534e001fe15e09", // 开发
   clientSecret: "650a311413c8be527b2dac3504584107ee0c6094", // 生产

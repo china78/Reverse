@@ -159,25 +159,35 @@ export const PRINCES: PRINCES[] = [
   // },
 ];
 
-const casdoor_dev_config = {
-  endpoint: "http://localhost:7001",
-  clientId: "c6b3a0adcc44d5d10856",
+// export const CASDOOR = {
+//   endpoint: "http://localhost:7001",
+//   clientId: "c6b3a0adcc44d5d10856",
+//   appName: "HelpReverse",
+//   organizationName: "built-in",
+//   redirectPath: "/#/oauth",
+//   clientSecret: "0d23837890ad2013425e07ce77534e001fe15e09",
+//   signinPath: "/api/signin",
+// };
+
+export const CASDOOR = {
+  endpoint: "https://casdoor.helpreverse.click",
+  clientId: "778e2be9e68493f532b4",
   appName: "HelpReverse",
   organizationName: "built-in",
   redirectPath: "/#/oauth",
-  clientSecret: "0d23837890ad2013425e07ce77534e001fe15e09",
+  clientSecret: "650a311413c8be527b2dac3504584107ee0c6094",
   signinPath: "/api/signin",
 };
 
-export const CASDOOR = {
-  endpoint: process.env.CASDOOR_ENDPOINT ?? casdoor_dev_config.endpoint,
-  clientId: process.env.CASDOOR_CLIENTID ?? casdoor_dev_config.clientId,
-  appName: process.env.CASDOOR_APPNAME ?? casdoor_dev_config.appName,
-  organizationName:
-    process.env.CASDOOR_ORGANIZATIONNAME ?? casdoor_dev_config.organizationName,
-  redirectPath:
-    process.env.CASDOOR_REDIRECTPATH ?? casdoor_dev_config.redirectPath,
-  clientSecret:
-    process.env.CASDOOR_CLIENTSECRET ?? casdoor_dev_config.clientSecret,
-  signinPath: process.env.CASDOOR_SIGNINPATH ?? casdoor_dev_config.signinPath,
-};
+// export const CASDOOR = {
+//   endpoint: process.env.CASDOOR_ENDPOINT ?? casdoor_dev_config.endpoint,
+//   clientId: process.env.CASDOOR_CLIENTID ?? casdoor_dev_config.clientId,
+//   appName: process.env.CASDOOR_APPNAME ?? casdoor_dev_config.appName,
+//   organizationName:
+//     process.env.CASDOOR_ORGANIZATIONNAME ?? casdoor_dev_config.organizationName,
+//   redirectPath:
+//     process.env.CASDOOR_REDIRECTPATH ?? casdoor_dev_config.redirectPath,
+//   clientSecret:
+//     process.env.CASDOOR_CLIENTSECRET ?? casdoor_dev_config.clientSecret,
+//   signinPath: process.env.CASDOOR_SIGNINPATH ?? casdoor_dev_config.signinPath,
+// };

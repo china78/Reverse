@@ -170,12 +170,12 @@ export const PRINCES: PRINCES[] = [
 // };
 
 export const CASDOOR = {
-  endpoint: "https://casdoor.helpreverse.click",
-  clientId: "09f70e22b6f2dbd6ce16",
-  appName: "HelpReverse",
-  organizationName: "built-in",
+  endpoint: "https://casdoor.helpreverse.click/user",
+  clientId: "c363fb65cd5919491468",
+  appName: "reverse",
+  organizationName: "user",
   redirectPath: "/#/oauth",
-  clientSecret: "b54bae15581a6004b735eaf212405664d957444e",
+  clientSecret: "8b94b88579ef6b6d73c1596684ab722d3354ff28",
   signinPath: "/api/signin",
 };
 

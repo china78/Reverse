@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import WxPay from "wechatpay-node-v3";
 import prisma from "@/app/db/prisma";
 import { Ipay } from "wechatpay-node-v3/dist/lib/interface";
+import moment from "moment";
 
 export type PayOptions = {
   appid: string;
@@ -108,24 +109,19 @@ export async function POST(req: NextRequest) {
         let memberExpirationDate: string;
 
         // 将交易成功时间转换为 Date 对象
-        const successTime = new Date(result.success_time!);
+        const successTime = moment(result.success_time);
 
         // 根据订阅类型计算会员到期时间
         if (subscriptionType === "包年") {
-          // 添加一年的时间
-          successTime.setFullYear(successTime.getFullYear() + 1);
+          successTime.add(1, "year");
         } else if (subscriptionType === "包季") {
-          // 添加三个月的时间
-          successTime.setMonth(successTime.getMonth() + 3);
+          successTime.add(3, "months");
         } else if (subscriptionType === "包月") {
-          // 添加一个月的时间
-          successTime.setMonth(successTime.getMonth() + 1);
+          successTime.add(1, "month");
         } else if (subscriptionType === "三天") {
-          // 添加三天的时间
-          successTime.setDate(successTime.getDate() + 3);
+          successTime.add(3, "days");
         } else if (subscriptionType === "测试") {
-          // 添加一小时的时间（用于测试）
-          successTime.setMinutes(successTime.getHours() + 1);
+          successTime.add(1, "hour");
         }
 
         // 将会员到期时间格式化为字符串

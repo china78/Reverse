@@ -166,11 +166,13 @@ export function Pay() {
   async function wechatPay() {
     setLoading(true);
     let payResult;
-    if (isPhone()) {
-      payResult = await appPay();
-    } else {
-      payResult = await nativaPay();
-    }
+    // if (isPhone()) {
+    //   payResult = await appPay();
+    // } else {
+    //   payResult = await nativaPay();
+    // }
+
+    payResult = await nativaPay(); // 目前统一二维码支付
 
     if (payResult.ok) {
       const data = await payResult.json();

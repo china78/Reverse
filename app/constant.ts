@@ -150,34 +150,36 @@ export const PRINCES: PRINCES[] = [
     subscriptionId: "4",
     subscriptionType: "三天",
   },
-  // {
-  //   name: "测试",
-  //   price: 0.1,
-  //   originPrice: 1,
-  //   subscriptionId: "5",
-  //   subscriptionType: "测试",
-  // },
+  {
+    name: "1小时测试",
+    price: 0.1,
+    originPrice: 1,
+    subscriptionId: "5",
+    subscriptionType: "测试",
+  },
 ];
 
-// export const CASDOOR = {
-//   endpoint: "http://localhost:7001",
-//   clientId: "c6b3a0adcc44d5d10856",
-//   appName: "HelpReverse",
-//   organizationName: "built-in",
-//   redirectPath: "/#/oauth",
-//   clientSecret: "0d23837890ad2013425e07ce77534e001fe15e09",
-//   signinPath: "/api/signin",
-// };
-
+// dev
 export const CASDOOR = {
-  endpoint: "https://casdoor.helpreverse.click",
-  clientId: "c363fb65cd5919491468",
-  appName: "reverse",
-  organizationName: "user",
+  endpoint: "http://localhost:7001",
+  clientId: "c6b3a0adcc44d5d10856",
+  appName: "HelpReverse",
+  organizationName: "built-in",
   redirectPath: "/#/oauth",
-  clientSecret: "8b94b88579ef6b6d73c1596684ab722d3354ff28",
+  clientSecret: "0d23837890ad2013425e07ce77534e001fe15e09",
   signinPath: "/api/signin",
 };
+
+// prod
+// export const CASDOOR = {
+//   endpoint: "https://casdoor.helpreverse.click/user",
+//   clientId: "c363fb65cd5919491468",
+//   appName: "reverse",
+//   organizationName: "user",
+//   redirectPath: "/#/oauth",
+//   clientSecret: "8b94b88579ef6b6d73c1596684ab722d3354ff28",
+//   signinPath: "/api/signin",
+// };
 
 // export const CASDOOR = {
 //   endpoint: process.env.CASDOOR_ENDPOINT ?? casdoor_dev_config.endpoint,

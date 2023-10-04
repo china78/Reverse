@@ -100,15 +100,24 @@ export function Pay() {
     }
   }
 
-  async function wechatPay() {
-    setLoading(true);
+  function isPhone() {
+    //获取浏览器navigator对象的userAgent属性（浏览器用于HTTP请求的用户代理头的值）
+    var info = navigator.userAgent;
+    //通过正则表达式的test方法判断是否包含“Mobile”字符串
+    var isPhone = /mobile/i.test(info);
+    //如果包含“Mobile”（是手机设备）则返回true
+    return isPhone;
+  }
+
+  async function nativaPay() {
     _out_trade_no = generateOrderNumber();
-    const payParams: PayParams = {
+    // nativa
+    const nativePayParams: PayParams = {
       appid: "wxa29f1b154a0856e3",
       mchid: "1651683598",
-      description: "reverse",
+      description: "native_pay",
       out_trade_no: _out_trade_no,
-      notify_url: "https://subdomain.example.com/path/to/notify",
+      notify_url: "https://www.helpreverse.click",
       amount: {
         total: Math.round(selectedTab.price * 100),
       },
@@ -123,10 +132,48 @@ export function Pay() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ params: payParams }),
+      body: JSON.stringify({ params: nativePayParams }),
     });
-    if (res.ok) {
-      const data = await res.json();
+    return res;
+  }
+
+  async function appPay() {
+    _out_trade_no = generateOrderNumber();
+    // app
+    const appPayParams = {
+      description: "reverse_pay",
+      out_trade_no: _out_trade_no,
+      notify_url: "https://www.helpreverse.click",
+      amount: {
+        total: Math.round(selectedTab.price * 100),
+      },
+      scene_info: {
+        payer_client_ip: "ip",
+      },
+    };
+    const res = await fetch("/api/transactions_app", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ params: appPayParams }),
+    });
+    return res;
+  }
+
+  async function wechatPay() {
+    setLoading(true);
+    let payResult;
+    if (isPhone()) {
+      payResult = await appPay();
+    } else {
+      payResult = await nativaPay();
+    }
+
+    if (payResult.ok) {
+      const data = await payResult.json();
       const { qrUrl } = data?.data;
       setqrUrl(qrUrl);
       setShowQRCode(true); // 显示二维码

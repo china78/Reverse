@@ -124,8 +124,8 @@ export async function POST(req: NextRequest) {
           // 添加三天的时间
           successTime.setDate(successTime.getDate() + 3);
         } else if (subscriptionType === "测试") {
-          // 添加一分钟的时间（用于测试）
-          successTime.setMinutes(successTime.getMinutes() + 1);
+          // 添加一小时的时间（用于测试）
+          successTime.setMinutes(successTime.getHours() + 1);
         }
 
         // 将会员到期时间格式化为字符串

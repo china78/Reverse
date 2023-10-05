@@ -112,15 +112,15 @@ export async function POST(req: NextRequest) {
         const successTime = moment(result.success_time);
 
         // 根据订阅类型计算会员到期时间
-        if (subscriptionType === "包年") {
+        if (subscriptionType === "1year") {
           successTime.add(1, "year");
-        } else if (subscriptionType === "包季") {
+        } else if (subscriptionType === "3month") {
           successTime.add(3, "months");
-        } else if (subscriptionType === "包月") {
+        } else if (subscriptionType === "1month") {
           successTime.add(1, "month");
-        } else if (subscriptionType === "三天") {
+        } else if (subscriptionType === "3day") {
           successTime.add(3, "days");
-        } else if (subscriptionType === "测试") {
+        } else if (subscriptionType === "test") {
           successTime.add(1, "hour");
         }
 

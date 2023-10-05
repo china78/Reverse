@@ -150,13 +150,13 @@ export const PRINCES: PRINCES[] = [
     subscriptionId: "4",
     subscriptionType: "3day",
   },
-  {
-    name: "1小时测试",
-    price: 0.1,
-    originPrice: 1,
-    subscriptionId: "5",
-    subscriptionType: "test",
-  },
+  // {
+  //   name: "1小时测试",
+  //   price: 0.1,
+  //   originPrice: 1,
+  //   subscriptionId: "5",
+  //   subscriptionType: "test",
+  // },
 ];
 
 // dev

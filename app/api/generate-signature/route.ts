@@ -73,9 +73,6 @@ export async function POST(req: NextRequest) {
   const CertificationType = "WECHATPAY2-SHA256-RSA2048"; // 认证类型
   const mchid = "1651683598"; // 微信支付商户号
 
-  console.log(" ----------- 签名 ----------: ", signature);
-  console.log(" ----------- 证书 ----------: ", serialNumber);
-
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",

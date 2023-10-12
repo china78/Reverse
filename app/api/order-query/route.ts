@@ -59,8 +59,8 @@ export async function POST(req: NextRequest) {
   } = await req.json();
 
   const payOptions: PayOptions = {
-    appid: "wxa29f1b154a0856e3",
-    mchid: "1651683598",
+    appid: "wxa29f1b154a0856e3", // 待关联商户号
+    mchid: "1651683598", // 微信支付商户号
     publicKey: "",
     privateKey: "",
   };

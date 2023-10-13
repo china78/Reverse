@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import * as Setting from "../Setting";
-const { SDK } = require("casdoor-nodejs-sdk");
 
 export function OAuthPage() {
   const [authing, setAuthing] = useState(!localStorage.getItem("jwt"));

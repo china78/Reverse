@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync } from "fs";
-import { homedir } from "os";
 import { CASDOOR } from "@/app/constant";
 import { SDK } from "casdoor-nodejs-sdk";
-import fs from "fs";
 
 export async function POST(req: NextRequest) {
   const { token } = await req.json();
